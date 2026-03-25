@@ -36,8 +36,8 @@ export default function Contacts() {
                 {[
                   { icon: "Phone", title: "Телефон", lines: ["+7 (995) 908-02-28"] },
                   { icon: "Mail", title: "Email", lines: ["info@artes-mebel.ru", "design@artes-mebel.ru"] },
-                  { icon: "MapPin", title: "Адрес", lines: ["Барнаул, ул. Мастеровая, 12", "Пн–Сб: 09:00–19:00"] },
-                  { icon: "Factory", title: "Производство", lines: ["Алтайский край, Барнаул", "Ул. Промышленная, 5"] },
+                  { icon: "MapPin", title: "Адрес", lines: ["Барнаул", "Пн–Сб: 09:00–19:00"] },
+                  { icon: "Factory", title: "Производство", lines: ["Барнаул, Алтайский край"] },
                 ].map(({ icon, title, lines }) => (
                   <div key={title} className="flex gap-5">
                     <div className="w-11 h-11 border border-[#c9a96e]/30 flex items-center justify-center shrink-0">
@@ -163,7 +163,7 @@ export default function Contacts() {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
             <Icon name="MapPin" size={40} className="text-[#c9a96e]/20 mx-auto mb-3" />
-            <p className="font-golos text-sm text-[#e8d5b0]/20">Барнаул, ул. Мастеровая, 12</p>
+            <p className="font-golos text-sm text-[#e8d5b0]/20">Барнаул</p>
           </div>
         </div>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNDB2NDBIMHoiLz48cGF0aCBkPSJNNDAgMEgwdjQwIiBzdHJva2U9InJnYmEoMjAxLDE2OSwxMTAsMC4wNSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvZz48L3N2Zz4=')] opacity-50" />
