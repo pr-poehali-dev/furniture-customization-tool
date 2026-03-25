@@ -3,24 +3,13 @@ import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
 
 type Step = 1 | 2 | 3 | 4;
+type CategoryId = "wardrobe" | "kitchen" | "door" | "staircase";
 
-const furnitureTypes = [
+const categories: { id: CategoryId; label: string; icon: string; basePrice: number }[] = [
+  { id: "wardrobe", label: "Шкаф", icon: "Archive", basePrice: 65000 },
   { id: "kitchen", label: "Кухня", icon: "ChefHat", basePrice: 290000 },
-  { id: "wardrobe", label: "Шкаф-купе", icon: "DoorOpen", basePrice: 75000 },
-  { id: "cabinet", label: "Распашной шкаф", icon: "Archive", basePrice: 65000 },
-  { id: "kids", label: "Детская комната", icon: "Baby", basePrice: 140000 },
-  { id: "office", label: "Офисная мебель", icon: "Briefcase", basePrice: 180000 },
-  { id: "table", label: "Стол из слэба", icon: "Columns2", basePrice: 90000 },
+  { id: "door", label: "Дверь", icon: "SquareDashedBottom", basePrice: 60000 },
   { id: "staircase", label: "Лестница", icon: "ArrowUpRight", basePrice: 300000 },
-  { id: "door", label: "Дверь из массива", icon: "SquareDashedBottom", basePrice: 60000 },
-];
-
-const materials = [
-  { id: "ldsp", label: "ЛДСП Premium", desc: "Надёжно, экономично", coef: 1.0 },
-  { id: "mdf", label: "МДФ эмаль", desc: "Гладкая поверхность, яркие цвета", coef: 1.35 },
-  { id: "oak", label: "Массив дуба", desc: "Природная красота, долговечность", coef: 1.9 },
-  { id: "walnut", label: "Массив ореха", desc: "Премиум уровень, эксклюзив", coef: 2.4 },
-  { id: "veneer", label: "Натуральный шпон", desc: "Вид массива, цена ниже", coef: 1.6 },
 ];
 
 const extras = [
@@ -31,34 +20,315 @@ const extras = [
   { id: "lighting", label: "Встроенная подсветка", price: 9000, icon: "Lightbulb" },
 ];
 
-const sizeOptions = [
-  { id: "s", label: "Маленький", desc: "до 6 м²", coef: 0.7 },
-  { id: "m", label: "Средний", desc: "6–12 м²", coef: 1.0 },
-  { id: "l", label: "Большой", desc: "12–20 м²", coef: 1.45 },
-  { id: "xl", label: "Очень большой", desc: "свыше 20 м²", coef: 2.0 },
-];
+type WardrobeParams = {
+  width: string;
+  height: string;
+  depth: string;
+  openType: string;
+  filling: string[];
+};
+
+type KitchenParams = {
+  kitchenType: string;
+  meters: string;
+};
+
+type DoorParams = {
+  width: string;
+};
+
+type StaircaseParams = {
+  staircaseType: string;
+};
+
+type CategoryParams = WardrobeParams | KitchenParams | DoorParams | StaircaseParams;
+
+const wardrobeWidths = ["80 см", "90 см", "100 см", "150 см", "200 см", "300 см"];
+const wardrobeHeights = ["200 см", "240 см", "270 см"];
+const wardrobeDepths = ["30 см", "40 см", "50 см"];
+const wardrobeOpenTypes = ["Распашной", "Купе"];
+const wardrobeFilling = ["Полки", "Ящики", "Штанги для вешалок"];
+
+const kitchenTypes = ["Прямая", "Угловая"];
+const kitchenMetersDirect = ["2 м.п.", "3 м.п.", "4 м.п."];
+const kitchenMetersCorner = ["3 м.п.", "4 м.п.", "5 м.п.", "6 м.п."];
+
+const doorWidths = ["60 см", "70 см", "80 см", "90 см"];
+
+const staircaseTypes = ["Деревянная", "Металлическая", "Бетонная"];
+
+function OptionButton({
+  selected,
+  onClick,
+  children,
+  className = "",
+}: {
+  selected: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`p-3 border text-left transition-all duration-300 ${
+        selected
+          ? "border-[#c9a96e] bg-[#c9a96e]/10"
+          : "border-[#c9a96e]/20 hover:border-[#c9a96e]/50"
+      } ${className}`}
+    >
+      <span className={`font-golos text-sm ${selected ? "text-[#c9a96e]" : "text-[#e8d5b0]/70"}`}>
+        {children}
+      </span>
+    </button>
+  );
+}
+
+function ParamGroup({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div className="mb-7">
+      <h3 className="font-golos text-[10px] tracking-[0.25em] uppercase text-[#c9a96e]/60 mb-3">
+        {title}
+      </h3>
+      {children}
+    </div>
+  );
+}
+
+function WardrobeStep({
+  params,
+  onChange,
+}: {
+  params: WardrobeParams;
+  onChange: (p: WardrobeParams) => void;
+}) {
+  const toggleFilling = (val: string) => {
+    const next = params.filling.includes(val)
+      ? params.filling.filter((f) => f !== val)
+      : [...params.filling, val];
+    onChange({ ...params, filling: next });
+  };
+
+  return (
+    <>
+      <ParamGroup title="Ширина">
+        <div className="grid grid-cols-3 gap-2">
+          {wardrobeWidths.map((w) => (
+            <OptionButton key={w} selected={params.width === w} onClick={() => onChange({ ...params, width: w })}>
+              {w}
+            </OptionButton>
+          ))}
+        </div>
+      </ParamGroup>
+
+      <ParamGroup title="Высота">
+        <div className="grid grid-cols-3 gap-2">
+          {wardrobeHeights.map((h) => (
+            <OptionButton key={h} selected={params.height === h} onClick={() => onChange({ ...params, height: h })}>
+              {h}
+            </OptionButton>
+          ))}
+        </div>
+      </ParamGroup>
+
+      <ParamGroup title="Глубина">
+        <div className="grid grid-cols-3 gap-2">
+          {wardrobeDepths.map((d) => (
+            <OptionButton key={d} selected={params.depth === d} onClick={() => onChange({ ...params, depth: d })}>
+              {d}
+            </OptionButton>
+          ))}
+        </div>
+      </ParamGroup>
+
+      <ParamGroup title="Тип открывания">
+        <div className="grid grid-cols-2 gap-2">
+          {wardrobeOpenTypes.map((o) => (
+            <OptionButton key={o} selected={params.openType === o} onClick={() => onChange({ ...params, openType: o })}>
+              {o}
+            </OptionButton>
+          ))}
+        </div>
+      </ParamGroup>
+
+      <ParamGroup title="Наполнение (можно несколько)">
+        <div className="grid grid-cols-1 gap-2">
+          {wardrobeFilling.map((f) => (
+            <button
+              key={f}
+              onClick={() => toggleFilling(f)}
+              className={`p-3 border flex items-center gap-3 transition-all duration-300 ${
+                params.filling.includes(f)
+                  ? "border-[#c9a96e] bg-[#c9a96e]/10"
+                  : "border-[#c9a96e]/20 hover:border-[#c9a96e]/50"
+              }`}
+            >
+              <div className={`w-4 h-4 border flex items-center justify-center shrink-0 transition-all ${
+                params.filling.includes(f) ? "border-[#c9a96e] bg-[#c9a96e]" : "border-[#c9a96e]/30"
+              }`}>
+                {params.filling.includes(f) && <Icon name="Check" size={10} className="text-[#0e0a06]" />}
+              </div>
+              <span className={`font-golos text-sm ${params.filling.includes(f) ? "text-[#c9a96e]" : "text-[#e8d5b0]/70"}`}>
+                {f}
+              </span>
+            </button>
+          ))}
+        </div>
+      </ParamGroup>
+    </>
+  );
+}
+
+function KitchenStep({
+  params,
+  onChange,
+}: {
+  params: KitchenParams;
+  onChange: (p: KitchenParams) => void;
+}) {
+  const meterOptions = params.kitchenType === "Угловая" ? kitchenMetersCorner : kitchenMetersDirect;
+
+  return (
+    <>
+      <ParamGroup title="Тип кухни">
+        <div className="grid grid-cols-2 gap-2">
+          {kitchenTypes.map((t) => (
+            <OptionButton
+              key={t}
+              selected={params.kitchenType === t}
+              onClick={() => onChange({ ...params, kitchenType: t, meters: "" })}
+            >
+              {t}
+            </OptionButton>
+          ))}
+        </div>
+      </ParamGroup>
+
+      {params.kitchenType && (
+        <ParamGroup title="Количество погонных метров">
+          <div className="grid grid-cols-2 gap-2">
+            {meterOptions.map((m) => (
+              <OptionButton key={m} selected={params.meters === m} onClick={() => onChange({ ...params, meters: m })}>
+                {m}
+              </OptionButton>
+            ))}
+          </div>
+        </ParamGroup>
+      )}
+    </>
+  );
+}
+
+function DoorStep({ params, onChange }: { params: DoorParams; onChange: (p: DoorParams) => void }) {
+  return (
+    <ParamGroup title="Ширина двери">
+      <div className="grid grid-cols-2 gap-2">
+        {doorWidths.map((w) => (
+          <OptionButton key={w} selected={params.width === w} onClick={() => onChange({ ...params, width: w })}>
+            {w}
+          </OptionButton>
+        ))}
+      </div>
+    </ParamGroup>
+  );
+}
+
+function StaircaseStep({
+  params,
+  onChange,
+}: {
+  params: StaircaseParams;
+  onChange: (p: StaircaseParams) => void;
+}) {
+  return (
+    <ParamGroup title="Тип лестницы">
+      <div className="grid grid-cols-1 gap-2">
+        {staircaseTypes.map((t) => (
+          <OptionButton key={t} selected={params.staircaseType === t} onClick={() => onChange({ ...params, staircaseType: t })}>
+            {t}
+          </OptionButton>
+        ))}
+      </div>
+    </ParamGroup>
+  );
+}
+
+function isParamsComplete(category: CategoryId, params: CategoryParams): boolean {
+  if (category === "wardrobe") {
+    const p = params as WardrobeParams;
+    return !!(p.width && p.height && p.depth && p.openType && p.filling.length > 0);
+  }
+  if (category === "kitchen") {
+    const p = params as KitchenParams;
+    return !!(p.kitchenType && p.meters);
+  }
+  if (category === "door") {
+    const p = params as DoorParams;
+    return !!p.width;
+  }
+  if (category === "staircase") {
+    const p = params as StaircaseParams;
+    return !!p.staircaseType;
+  }
+  return false;
+}
+
+function getParamsSummary(category: CategoryId, params: CategoryParams): { label: string; value: string }[] {
+  if (category === "wardrobe") {
+    const p = params as WardrobeParams;
+    return [
+      { label: "Ширина", value: p.width || "—" },
+      { label: "Высота", value: p.height || "—" },
+      { label: "Глубина", value: p.depth || "—" },
+      { label: "Открывание", value: p.openType || "—" },
+      { label: "Наполнение", value: p.filling.length ? p.filling.join(", ") : "—" },
+    ];
+  }
+  if (category === "kitchen") {
+    const p = params as KitchenParams;
+    return [
+      { label: "Тип", value: p.kitchenType || "—" },
+      { label: "Погонных метров", value: p.meters || "—" },
+    ];
+  }
+  if (category === "door") {
+    const p = params as DoorParams;
+    return [{ label: "Ширина", value: p.width || "—" }];
+  }
+  if (category === "staircase") {
+    const p = params as StaircaseParams;
+    return [{ label: "Тип лестницы", value: p.staircaseType || "—" }];
+  }
+  return [];
+}
+
+const defaultParams: Record<CategoryId, CategoryParams> = {
+  wardrobe: { width: "", height: "", depth: "", openType: "", filling: [] },
+  kitchen: { kitchenType: "", meters: "" },
+  door: { width: "" },
+  staircase: { staircaseType: "" },
+};
 
 export default function Calculator() {
   const [step, setStep] = useState<Step>(1);
-  const [selectedType, setSelectedType] = useState<string>("");
-  const [selectedMaterial, setSelectedMaterial] = useState<string>("ldsp");
-  const [selectedSize, setSelectedSize] = useState<string>("m");
+  const [selectedCategory, setSelectedCategory] = useState<CategoryId | "">("");
+  const [categoryParams, setCategoryParams] = useState<Record<CategoryId, CategoryParams>>({ ...defaultParams });
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
   const [form, setForm] = useState({ name: "", phone: "", email: "", comment: "" });
   const [sent, setSent] = useState(false);
 
-  const typeObj = furnitureTypes.find((t) => t.id === selectedType);
-  const materialObj = materials.find((m) => m.id === selectedMaterial);
-  const sizeObj = sizeOptions.find((s) => s.id === selectedSize);
+  const catObj = categories.find((c) => c.id === selectedCategory);
+  const basePrice = catObj?.basePrice ?? 0;
   const extrasTotal = selectedExtras.reduce((sum, id) => {
     const e = extras.find((ex) => ex.id === id);
     return sum + (e?.price ?? 0);
   }, 0);
+  const total = Math.round(basePrice + extrasTotal);
 
-  const basePrice = typeObj?.basePrice ?? 0;
-  const materialCoef = materialObj?.coef ?? 1;
-  const sizeCoef = sizeObj?.coef ?? 1;
-  const total = Math.round(basePrice * materialCoef * sizeCoef + extrasTotal);
+  const currentParams = selectedCategory ? categoryParams[selectedCategory] : null;
+  const paramsComplete = selectedCategory
+    ? isParamsComplete(selectedCategory as CategoryId, categoryParams[selectedCategory])
+    : false;
 
   const toggleExtra = (id: string) => {
     setSelectedExtras((prev) =>
@@ -71,8 +341,13 @@ export default function Calculator() {
     setSent(true);
   };
 
+  const updateParams = (p: CategoryParams) => {
+    if (!selectedCategory) return;
+    setCategoryParams((prev) => ({ ...prev, [selectedCategory]: p }));
+  };
+
   const steps = [
-    { num: 1, label: "Тип мебели" },
+    { num: 1, label: "Категория" },
     { num: 2, label: "Параметры" },
     { num: 3, label: "Опции" },
     { num: 4, label: "Контакты" },
@@ -80,7 +355,6 @@ export default function Calculator() {
 
   return (
     <Layout>
-      {/* Header */}
       <section className="pt-40 pb-16 bg-[#0e0a06]">
         <div className="container mx-auto px-6">
           <span className="font-golos text-xs tracking-[0.3em] uppercase text-[#c9a96e] block mb-4">
@@ -97,7 +371,7 @@ export default function Calculator() {
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
 
-            {/* Steps */}
+            {/* Steps indicator */}
             <div className="flex items-center justify-center mb-12">
               {steps.map((s, i) => (
                 <div key={s.num} className="flex items-center">
@@ -117,14 +391,20 @@ export default function Calculator() {
                         <span className="font-golos text-sm">{s.num}</span>
                       )}
                     </div>
-                    <span className={`font-golos text-[10px] tracking-widest uppercase mt-2 hidden sm:block ${
-                      step === s.num ? "text-[#c9a96e]" : "text-[#e8d5b0]/30"
-                    }`}>
+                    <span
+                      className={`font-golos text-[10px] tracking-widest uppercase mt-2 hidden sm:block ${
+                        step === s.num ? "text-[#c9a96e]" : "text-[#e8d5b0]/30"
+                      }`}
+                    >
                       {s.label}
                     </span>
                   </div>
                   {i < steps.length - 1 && (
-                    <div className={`w-16 md:w-24 h-px mx-2 transition-colors duration-300 ${step > s.num ? "bg-[#c9a96e]/40" : "bg-[#e8d5b0]/10"}`} />
+                    <div
+                      className={`w-16 md:w-24 h-px mx-2 transition-colors duration-300 ${
+                        step > s.num ? "bg-[#c9a96e]/40" : "bg-[#e8d5b0]/10"
+                      }`}
+                    />
                   )}
                 </div>
               ))}
@@ -135,19 +415,19 @@ export default function Calculator() {
               <div className="lg:col-span-2">
                 {!sent ? (
                   <>
-                    {/* Step 1 */}
+                    {/* Step 1 — Category */}
                     {step === 1 && (
                       <div className="card-dark p-8">
                         <h2 className="font-cormorant text-2xl text-[#e8d5b0] mb-6">
-                          Выберите тип мебели
+                          Выберите категорию
                         </h2>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                          {furnitureTypes.map(({ id, label, icon }) => (
+                          {categories.map(({ id, label, icon }) => (
                             <button
                               key={id}
-                              onClick={() => setSelectedType(id)}
+                              onClick={() => setSelectedCategory(id)}
                               className={`p-4 border text-center transition-all duration-300 ${
-                                selectedType === id
+                                selectedCategory === id
                                   ? "border-[#c9a96e] bg-[#c9a96e]/10"
                                   : "border-[#c9a96e]/20 hover:border-[#c9a96e]/50"
                               }`}
@@ -156,12 +436,14 @@ export default function Calculator() {
                                 name={icon}
                                 size={22}
                                 className={`mx-auto mb-2 ${
-                                  selectedType === id ? "text-[#c9a96e]" : "text-[#e8d5b0]/40"
+                                  selectedCategory === id ? "text-[#c9a96e]" : "text-[#e8d5b0]/40"
                                 }`}
                               />
-                              <span className={`font-golos text-xs ${
-                                selectedType === id ? "text-[#c9a96e]" : "text-[#e8d5b0]/55"
-                              }`}>
+                              <span
+                                className={`font-golos text-xs ${
+                                  selectedCategory === id ? "text-[#c9a96e]" : "text-[#e8d5b0]/55"
+                                }`}
+                              >
                                 {label}
                               </span>
                             </button>
@@ -169,9 +451,9 @@ export default function Calculator() {
                         </div>
                         <div className="flex justify-end mt-8">
                           <button
-                            disabled={!selectedType}
+                            disabled={!selectedCategory}
                             onClick={() => setStep(2)}
-                            className={`btn-gold ${!selectedType ? "opacity-40 cursor-not-allowed" : ""}`}
+                            className={`btn-gold ${!selectedCategory ? "opacity-40 cursor-not-allowed" : ""}`}
                           >
                             Далее
                           </button>
@@ -179,78 +461,55 @@ export default function Calculator() {
                       </div>
                     )}
 
-                    {/* Step 2 */}
-                    {step === 2 && (
+                    {/* Step 2 — Parameters */}
+                    {step === 2 && selectedCategory && currentParams && (
                       <div className="card-dark p-8">
                         <h2 className="font-cormorant text-2xl text-[#e8d5b0] mb-6">
-                          Размер и материал
+                          Параметры{" "}
+                          <span className="text-[#c9a96e]">{catObj?.label}</span>
                         </h2>
 
-                        <div className="mb-8">
-                          <h3 className="font-golos text-xs tracking-[0.2em] uppercase text-[#c9a96e]/70 mb-4">
-                            Размер проекта
-                          </h3>
-                          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                            {sizeOptions.map(({ id, label, desc }) => (
-                              <button
-                                key={id}
-                                onClick={() => setSelectedSize(id)}
-                                className={`p-4 border text-left transition-all duration-300 ${
-                                  selectedSize === id
-                                    ? "border-[#c9a96e] bg-[#c9a96e]/10"
-                                    : "border-[#c9a96e]/20 hover:border-[#c9a96e]/50"
-                                }`}
-                              >
-                                <span className={`font-cormorant text-lg block mb-1 ${selectedSize === id ? "text-[#c9a96e]" : "text-[#e8d5b0]"}`}>
-                                  {label}
-                                </span>
-                                <span className="font-golos text-[10px] text-[#e8d5b0]/40">{desc}</span>
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="mb-8">
-                          <h3 className="font-golos text-xs tracking-[0.2em] uppercase text-[#c9a96e]/70 mb-4">
-                            Материал
-                          </h3>
-                          <div className="space-y-2">
-                            {materials.map(({ id, label, desc, coef }) => (
-                              <button
-                                key={id}
-                                onClick={() => setSelectedMaterial(id)}
-                                className={`w-full p-4 border text-left flex items-center justify-between transition-all duration-300 ${
-                                  selectedMaterial === id
-                                    ? "border-[#c9a96e] bg-[#c9a96e]/10"
-                                    : "border-[#c9a96e]/20 hover:border-[#c9a96e]/50"
-                                }`}
-                              >
-                                <div>
-                                  <span className={`font-golos text-sm block ${selectedMaterial === id ? "text-[#c9a96e]" : "text-[#e8d5b0]/80"}`}>
-                                    {label}
-                                  </span>
-                                  <span className="font-golos text-xs text-[#e8d5b0]/35">{desc}</span>
-                                </div>
-                                <span className="font-golos text-xs text-[#e8d5b0]/30">
-                                  ×{coef.toFixed(1)}
-                                </span>
-                              </button>
-                            ))}
-                          </div>
-                        </div>
+                        {selectedCategory === "wardrobe" && (
+                          <WardrobeStep
+                            params={currentParams as WardrobeParams}
+                            onChange={updateParams}
+                          />
+                        )}
+                        {selectedCategory === "kitchen" && (
+                          <KitchenStep
+                            params={currentParams as KitchenParams}
+                            onChange={updateParams}
+                          />
+                        )}
+                        {selectedCategory === "door" && (
+                          <DoorStep
+                            params={currentParams as DoorParams}
+                            onChange={updateParams}
+                          />
+                        )}
+                        {selectedCategory === "staircase" && (
+                          <StaircaseStep
+                            params={currentParams as StaircaseParams}
+                            onChange={updateParams}
+                          />
+                        )}
 
                         <div className="flex justify-between mt-6">
                           <button onClick={() => setStep(1)} className="btn-outline-gold">
                             Назад
                           </button>
-                          <button onClick={() => setStep(3)} className="btn-gold">
+                          <button
+                            disabled={!paramsComplete}
+                            onClick={() => setStep(3)}
+                            className={`btn-gold ${!paramsComplete ? "opacity-40 cursor-not-allowed" : ""}`}
+                          >
                             Далее
                           </button>
                         </div>
                       </div>
                     )}
 
-                    {/* Step 3 */}
+                    {/* Step 3 — Extras */}
                     {step === 3 && (
                       <div className="card-dark p-8">
                         <h2 className="font-cormorant text-2xl text-[#e8d5b0] mb-6">
@@ -269,13 +528,23 @@ export default function Calculator() {
                                     : "border-[#c9a96e]/20 hover:border-[#c9a96e]/50"
                                 }`}
                               >
-                                <div className={`w-5 h-5 border flex items-center justify-center shrink-0 transition-all duration-300 ${
-                                  checked ? "border-[#c9a96e] bg-[#c9a96e]" : "border-[#c9a96e]/30"
-                                }`}>
+                                <div
+                                  className={`w-5 h-5 border flex items-center justify-center shrink-0 transition-all duration-300 ${
+                                    checked ? "border-[#c9a96e] bg-[#c9a96e]" : "border-[#c9a96e]/30"
+                                  }`}
+                                >
                                   {checked && <Icon name="Check" size={12} className="text-[#0e0a06]" />}
                                 </div>
-                                <Icon name={icon} size={16} className={checked ? "text-[#c9a96e]" : "text-[#e8d5b0]/40"} />
-                                <span className={`font-golos text-sm flex-1 text-left ${checked ? "text-[#c9a96e]" : "text-[#e8d5b0]/70"}`}>
+                                <Icon
+                                  name={icon}
+                                  size={16}
+                                  className={checked ? "text-[#c9a96e]" : "text-[#e8d5b0]/40"}
+                                />
+                                <span
+                                  className={`font-golos text-sm flex-1 text-left ${
+                                    checked ? "text-[#c9a96e]" : "text-[#e8d5b0]/70"
+                                  }`}
+                                >
                                   {label}
                                 </span>
                                 <span className="font-golos text-xs text-[#c9a96e]/60">
@@ -286,13 +555,17 @@ export default function Calculator() {
                           })}
                         </div>
                         <div className="flex justify-between mt-8">
-                          <button onClick={() => setStep(2)} className="btn-outline-gold">Назад</button>
-                          <button onClick={() => setStep(4)} className="btn-gold">Далее</button>
+                          <button onClick={() => setStep(2)} className="btn-outline-gold">
+                            Назад
+                          </button>
+                          <button onClick={() => setStep(4)} className="btn-gold">
+                            Далее
+                          </button>
                         </div>
                       </div>
                     )}
 
-                    {/* Step 4 */}
+                    {/* Step 4 — Contacts */}
                     {step === 4 && (
                       <div className="card-dark p-8">
                         <h2 className="font-cormorant text-2xl text-[#e8d5b0] mb-6">
@@ -301,7 +574,9 @@ export default function Calculator() {
                         <form onSubmit={handleSubmit} className="space-y-4">
                           <div className="grid grid-cols-2 gap-4">
                             <div>
-                              <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">Имя *</label>
+                              <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">
+                                Имя *
+                              </label>
                               <input
                                 type="text"
                                 required
@@ -312,7 +587,9 @@ export default function Calculator() {
                               />
                             </div>
                             <div>
-                              <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">Телефон *</label>
+                              <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">
+                                Телефон *
+                              </label>
                               <input
                                 type="tel"
                                 required
@@ -324,7 +601,9 @@ export default function Calculator() {
                             </div>
                           </div>
                           <div>
-                            <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">Email</label>
+                            <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">
+                              Email
+                            </label>
                             <input
                               type="email"
                               placeholder="your@email.ru"
@@ -334,17 +613,21 @@ export default function Calculator() {
                             />
                           </div>
                           <div>
-                            <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">Пожелания</label>
+                            <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">
+                              Пожелания
+                            </label>
                             <textarea
                               rows={3}
-                              placeholder="Опишите ваш проект, размеры, пожелания..."
+                              placeholder="Опишите ваш проект, дополнительные пожелания..."
                               className="input-dark resize-none"
                               value={form.comment}
                               onChange={(e) => setForm({ ...form, comment: e.target.value })}
                             />
                           </div>
                           <div className="flex justify-between mt-2">
-                            <button type="button" onClick={() => setStep(3)} className="btn-outline-gold">Назад</button>
+                            <button type="button" onClick={() => setStep(3)} className="btn-outline-gold">
+                              Назад
+                            </button>
                             <button type="submit" className="btn-gold">
                               Отправить заявку
                             </button>
@@ -384,23 +667,22 @@ export default function Calculator() {
 
                   <div className="space-y-3 mb-6">
                     <div className="flex justify-between">
-                      <span className="font-golos text-xs text-[#e8d5b0]/50">Тип</span>
+                      <span className="font-golos text-xs text-[#e8d5b0]/50">Категория</span>
                       <span className="font-golos text-xs text-[#e8d5b0]/80">
-                        {typeObj?.label ?? "—"}
+                        {catObj?.label ?? "—"}
                       </span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="font-golos text-xs text-[#e8d5b0]/50">Размер</span>
-                      <span className="font-golos text-xs text-[#e8d5b0]/80">
-                        {sizeObj?.label ?? "—"}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="font-golos text-xs text-[#e8d5b0]/50">Материал</span>
-                      <span className="font-golos text-xs text-[#e8d5b0]/80">
-                        {materialObj?.label ?? "—"}
-                      </span>
-                    </div>
+
+                    {selectedCategory &&
+                      getParamsSummary(selectedCategory as CategoryId, categoryParams[selectedCategory]).map(
+                        ({ label, value }) => (
+                          <div key={label} className="flex justify-between gap-2">
+                            <span className="font-golos text-xs text-[#e8d5b0]/50 shrink-0">{label}</span>
+                            <span className="font-golos text-xs text-[#e8d5b0]/80 text-right">{value}</span>
+                          </div>
+                        )
+                      )}
+
                     {selectedExtras.length > 0 && (
                       <div>
                         <span className="font-golos text-xs text-[#e8d5b0]/50 block mb-1">Опции:</span>
@@ -426,9 +708,7 @@ export default function Calculator() {
                       Предварительная стоимость
                     </p>
                     <p className="font-cormorant text-4xl text-[#c9a96e]">
-                      {selectedType
-                        ? `от ${total.toLocaleString("ru-RU")} ₽`
-                        : "—"}
+                      {selectedCategory ? `от ${total.toLocaleString("ru-RU")} ₽` : "—"}
                     </p>
                     <p className="font-golos text-[10px] text-[#e8d5b0]/30 mt-2">
                       Точная цена после замера
