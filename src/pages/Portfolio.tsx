@@ -3,23 +3,24 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
 
-const KITCHEN_IMG = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/86ec8339-1491-4b18-b054-ab0e77b7da6a.jpg";
-const WARDROBE_IMG = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/7cacd572-5b88-49ca-912c-3acf1474efcc.jpg";
-const TABLE_IMG = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/abca67fa-795b-4120-b5b2-4dd5c8ebf8e9.jpg";
-const STAIR_IMG = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/940a4c0c-4aeb-4178-88db-274dee12d818.jpg";
-const KIDS_IMG = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/b0a9d7a1-b2fe-4cbc-bbf9-789b4270776a.jpg";
+const IMG_KITCHEN_WALNUT = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/6b303acd-fdb4-4c7d-85f1-3b9a80af7c8d.jpg";
+const IMG_WARDROBE_OAK = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/81ea9c87-b222-4c9e-851e-a677bee3768b.jpg";
+const IMG_SHELVING = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/cafba108-ef00-4973-8d33-8aa9c06d7451.jpg";
+const IMG_TABLE_OAK = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/f2cca7b2-9547-4032-bc01-c1c5db17a51c.jpg";
+const IMG_OFFICE = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/3ea0243a-4604-4e7e-95d5-d38214c7bb5d.jpg";
+const IMG_BATHROOM = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/b505ebea-ce7a-45e8-bd21-1d7d4093d944.jpg";
 
-const filters = ["Все", "Кухни", "Шкафы", "Лестницы", "Детские", "Столы"];
+const filters = ["Все", "Кухни", "Шкафы", "Гостиные", "Кабинеты", "Столы", "Ванные"];
 
 const works = [
-  { id: 1, title: "Кухня в стиле модерн", category: "Кухни", img: KITCHEN_IMG, location: "Москва, Рублёвское шоссе", year: "2024", area: "18 м²" },
-  { id: 2, title: "Гардеробная-студия", category: "Шкафы", img: WARDROBE_IMG, location: "Санкт-Петербург", year: "2024", area: "12 м²" },
-  { id: 3, title: "Детская для двойни", category: "Детские", img: KIDS_IMG, location: "Москва, Новая Рига", year: "2023", area: "22 м²" },
-  { id: 4, title: "Стол из карагача", category: "Столы", img: TABLE_IMG, location: "Подмосковье", year: "2024", area: "Индивидуально" },
-  { id: 5, title: "Лестница «Паук»", category: "Лестницы", img: STAIR_IMG, location: "Москва, Рублёво", year: "2023", area: "Высота 4.2 м" },
-  { id: 6, title: "Кухня-остров", category: "Кухни", img: KITCHEN_IMG, location: "Красногорск", year: "2024", area: "24 м²" },
-  { id: 7, title: "Офис руководителя", category: "Шкафы", img: WARDROBE_IMG, location: "Москва, ММДЦ", year: "2023", area: "35 м²" },
-  { id: 8, title: "Детская-трансформер", category: "Детские", img: KIDS_IMG, location: "Одинцово", year: "2024", area: "16 м²" },
+  { id: 1, title: "Кухня из тёмного ореха", category: "Кухни", img: IMG_KITCHEN_WALNUT, location: "Москва, Рублёвское шоссе", year: "2024", area: "22 м²" },
+  { id: 2, title: "Гардеробная в светлом дубе", category: "Шкафы", img: IMG_WARDROBE_OAK, location: "Санкт-Петербург", year: "2024", area: "12 м²" },
+  { id: 3, title: "Стеллаж в гостиную", category: "Гостиные", img: IMG_SHELVING, location: "Москва, Пресня", year: "2024", area: "18 м²" },
+  { id: 4, title: "Стол и стулья из дуба", category: "Столы", img: IMG_TABLE_OAK, location: "Подмосковье, Одинцово", year: "2024", area: "Индивидуально" },
+  { id: 5, title: "Кабинет руководителя", category: "Кабинеты", img: IMG_OFFICE, location: "Москва, ММДЦ", year: "2023", area: "35 м²" },
+  { id: 6, title: "Тумба в ванную White & Gold", category: "Ванные", img: IMG_BATHROOM, location: "Москва, Красная Поляна", year: "2024", area: "8 м²" },
+  { id: 7, title: "Кухня-остров в белом лаке", category: "Кухни", img: IMG_SHELVING, location: "Красногорск", year: "2024", area: "24 м²" },
+  { id: 8, title: "Встроенный шкаф-купе", category: "Шкафы", img: IMG_WARDROBE_OAK, location: "Москва, Новая Рига", year: "2023", area: "16 м²" },
 ];
 
 export default function Portfolio() {
