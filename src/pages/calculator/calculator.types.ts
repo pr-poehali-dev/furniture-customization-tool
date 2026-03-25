@@ -24,11 +24,11 @@ export type StaircaseParams = {
 
 export type CategoryParams = WardrobeParams | KitchenParams | DoorParams | StaircaseParams;
 
-export const categories: { id: CategoryId; label: string; icon: string; basePrice: number }[] = [
-  { id: "wardrobe", label: "Шкаф", icon: "Archive", basePrice: 65000 },
-  { id: "kitchen", label: "Кухня", icon: "ChefHat", basePrice: 290000 },
-  { id: "door", label: "Дверь", icon: "SquareDashedBottom", basePrice: 60000 },
-  { id: "staircase", label: "Лестница", icon: "ArrowUpRight", basePrice: 300000 },
+export const categories: { id: CategoryId; label: string; icon: string }[] = [
+  { id: "wardrobe", label: "Шкаф", icon: "Archive" },
+  { id: "kitchen", label: "Кухня", icon: "ChefHat" },
+  { id: "door", label: "Дверь", icon: "SquareDashedBottom" },
+  { id: "staircase", label: "Лестница", icon: "ArrowUpRight" },
 ];
 
 export const extras = [
@@ -78,6 +78,57 @@ export function isParamsComplete(category: CategoryId, params: CategoryParams): 
     return !!p.staircaseType;
   }
   return false;
+}
+
+// Парсим строку вида "80 см" -> 0.8 (погонные метры)
+function widthToPogon(width: string): number {
+  const cm = parseInt(width);
+  return cm / 100;
+}
+
+// Парсим строку вида "2 м.п." -> 2
+function metersToNum(m: string): number {
+  return parseFloat(m);
+}
+
+export function calcPrice(category: CategoryId, params: CategoryParams): number {
+  if (category === "wardrobe") {
+    const p = params as WardrobeParams;
+    if (!p.width) return 0;
+    const pogon = widthToPogon(p.width);
+    let price = pogon * 25000;
+    if (p.openType === "Купе") price += pogon * 10000;
+    if (p.filling.includes("Полки")) price += 2000;
+    if (p.filling.includes("Ящики")) price += 5000;
+    return Math.round(price);
+  }
+  if (category === "kitchen") {
+    const p = params as KitchenParams;
+    if (!p.meters) return 0;
+    const m = metersToNum(p.meters);
+    const ratePerMeter = p.kitchenType === "Угловая" ? 36000 : 28000;
+    return Math.round(m * ratePerMeter);
+  }
+  if (category === "door") {
+    const p = params as DoorParams;
+    const prices: Record<string, number> = {
+      "60 см": 45000,
+      "70 см": 50000,
+      "80 см": 55000,
+      "90 см": 60000,
+    };
+    return prices[p.width] ?? 0;
+  }
+  if (category === "staircase") {
+    const p = params as StaircaseParams;
+    const prices: Record<string, number> = {
+      "Деревянная": 150000,
+      "Металлическая": 100000,
+      "Бетонная": 175000,
+    };
+    return prices[p.staircaseType] ?? 0;
+  }
+  return 0;
 }
 
 export function getParamsSummary(category: CategoryId, params: CategoryParams): { label: string; value: string }[] {

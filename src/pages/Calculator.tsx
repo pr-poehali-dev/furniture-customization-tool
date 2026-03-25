@@ -6,6 +6,7 @@ import {
   CategoryId,
   CategoryParams,
   Step,
+  calcPrice,
   categories,
   defaultParams,
   extras,
@@ -32,12 +33,14 @@ export default function Calculator() {
   const [sending, setSending] = useState(false);
 
   const catObj = categories.find((c) => c.id === selectedCategory);
-  const basePrice = catObj?.basePrice ?? 0;
+  const categoryPrice = selectedCategory
+    ? calcPrice(selectedCategory as CategoryId, categoryParams[selectedCategory])
+    : 0;
   const extrasTotal = selectedExtras.reduce((sum, id) => {
     const e = extras.find((ex) => ex.id === id);
     return sum + (e?.price ?? 0);
   }, 0);
-  const total = Math.round(basePrice + extrasTotal);
+  const total = categoryPrice + extrasTotal;
 
   const currentParams = selectedCategory ? categoryParams[selectedCategory] : null;
   const paramsComplete = selectedCategory
