@@ -89,9 +89,9 @@ export default function Footer() {
             </h4>
             <ul className="space-y-4">
               {[
-                { icon: "Phone", text: "+7 (999) 123-45-67" },
+                { icon: "Phone", text: "+7 (995) 908-02-28" },
                 { icon: "Mail", text: "info@artes-mebel.ru" },
-                { icon: "MapPin", text: "Москва, ул. Мастеровая, 12" },
+                { icon: "MapPin", text: "Барнаул, ул. Мастеровая, 12" },
                 { icon: "Clock", text: "Пн–Сб: 09:00–19:00" },
               ].map(({ icon, text }) => (
                 <li key={text} className="flex items-start gap-3">
