@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <Link to="/" className="flex flex-col leading-none mb-6 inline-block">
               <span className="font-cormorant text-2xl font-light tracking-[0.15em] text-[#e8d5b0]">
-                ARTES
+                ЭЛИУТ
               </span>
               <span className="font-golos text-[9px] tracking-[0.4em] uppercase text-[#c9a96e] mt-0.5">
                 мебельная мастерская
@@ -107,7 +107,7 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[#e8d5b0]/30 font-golos tracking-widest">
-            © 2024 ARTES. Все права защищены.
+            © 2024 ЭЛИУТ. Все права защищены.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-xs text-[#e8d5b0]/30 hover:text-[#c9a96e] transition-colors font-golos">

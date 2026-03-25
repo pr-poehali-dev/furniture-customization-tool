@@ -39,7 +39,7 @@ export default function Navbar() {
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="flex flex-col leading-none group">
           <span className="font-cormorant text-2xl font-light tracking-[0.15em] text-[#e8d5b0] group-hover:text-[#c9a96e] transition-colors duration-300">
-            ARTES
+            ЭЛИУТ
           </span>
           <span className="font-golos text-[9px] tracking-[0.4em] uppercase text-[#c9a96e] mt-0.5">
             мебельная мастерская
