@@ -1,0 +1,27 @@
+{
+  "tests": [
+    {
+      "name": "Send order to Telegram",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Иван Иванов",
+        "phone": "+7 900 000 00 00",
+        "email": "test@test.ru",
+        "comment": "Тестовая заявка",
+        "category": "Шкаф",
+        "params": {
+          "Ширина": "100 см",
+          "Высота": "240 см",
+          "Глубина": "50 см",
+          "Открывание": "Купе",
+          "Наполнение": "Полки, Ящики"
+        },
+        "extras": ["3D-визуализация", "Монтаж и установка"]
+      },
+      "expectedStatus": 200,
+      "expectedBody": {"ok": true},
+      "bodyMatcher": "partial"
+    }
+  ]
+}

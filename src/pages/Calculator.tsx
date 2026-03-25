@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
+import func2url from "../../backend/func2url.json";
 import {
   CategoryId,
   CategoryParams,
@@ -8,6 +9,7 @@ import {
   categories,
   defaultParams,
   extras,
+  getParamsSummary,
   isParamsComplete,
 } from "./calculator/calculator.types";
 import CalculatorSteps from "./calculator/CalculatorSteps";
@@ -27,6 +29,7 @@ export default function Calculator() {
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
   const [form, setForm] = useState({ name: "", phone: "", email: "", comment: "" });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const catObj = categories.find((c) => c.id === selectedCategory);
   const basePrice = catObj?.basePrice ?? 0;
@@ -47,8 +50,32 @@ export default function Calculator() {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSending(true);
+
+    const paramsSummary = selectedCategory
+      ? getParamsSummary(selectedCategory as CategoryId, categoryParams[selectedCategory])
+          .reduce((acc, { label, value }) => ({ ...acc, [label]: value }), {} as Record<string, string>)
+      : {};
+
+    const extraLabels = selectedExtras.map((id) => {
+      const ex = extras.find((e) => e.id === id);
+      return ex?.label ?? id;
+    });
+
+    await fetch(func2url["send-order"], {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...form,
+        category: catObj?.label ?? "",
+        params: paramsSummary,
+        extras: extraLabels,
+      }),
+    }).catch(() => null);
+
+    setSending(false);
     setSent(true);
   };
 
@@ -119,6 +146,7 @@ export default function Calculator() {
                 <CalculatorSteps
                   step={step}
                   sent={sent}
+                  sending={sending}
                   total={total}
                   selectedCategory={selectedCategory}
                   setSelectedCategory={setSelectedCategory}

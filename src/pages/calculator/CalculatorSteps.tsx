@@ -19,6 +19,7 @@ import {
 type StepsProps = {
   step: number;
   sent: boolean;
+  sending: boolean;
   total: number;
   selectedCategory: CategoryId | "";
   setSelectedCategory: (id: CategoryId) => void;
@@ -37,6 +38,7 @@ type StepsProps = {
 export default function CalculatorSteps({
   step,
   sent,
+  sending,
   total,
   selectedCategory,
   setSelectedCategory,
@@ -274,8 +276,8 @@ export default function CalculatorSteps({
               <button type="button" onClick={() => setStep(3)} className="btn-outline-gold">
                 Назад
               </button>
-              <button type="submit" className="btn-gold">
-                Отправить заявку
+              <button type="submit" disabled={sending} className={`btn-gold ${sending ? "opacity-60 cursor-not-allowed" : ""}`}>
+                {sending ? "Отправка..." : "Отправить заявку"}
               </button>
             </div>
             <p className="font-golos text-[10px] text-[#e8d5b0]/25 text-center">
