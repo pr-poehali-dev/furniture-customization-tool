@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
-import Furniture3DViewer from "@/components/Furniture3DViewer";
 
 const HERO_IMG = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/7955e3dc-d27c-47ff-9e56-f4a2cd469bdc.jpg";
 const KITCHEN_IMG = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/86ec8339-1491-4b18-b054-ab0e77b7da6a.jpg";
@@ -192,29 +191,6 @@ export default function Home() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3D Viewer */}
-      <section className="py-24 bg-[#0e0a06]">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <span className="font-golos text-xs tracking-[0.3em] uppercase text-[#c9a96e] block mb-4">
-              Интерактивная демонстрация
-            </span>
-            <h2 className="section-title mb-4">Рассмотрите мебель в 3D</h2>
-            <p className="font-golos text-base text-[#e8d5b0]/55 max-w-xl mx-auto">
-              Выбирайте тип мебели, поворачивайте модель и примеряйте варианты отделки
-            </p>
-          </div>
-          <div className="max-w-3xl mx-auto">
-            <Furniture3DViewer />
-          </div>
-          <div className="text-center mt-8">
-            <Link to="/visualizer" className="btn-outline-gold">
-              Открыть полный визуализатор
-            </Link>
           </div>
         </div>
       </section>
