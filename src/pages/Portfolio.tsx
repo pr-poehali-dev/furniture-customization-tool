@@ -14,6 +14,9 @@ const IMG_TABLE_OAK = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-
 const IMG_OFFICE = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/3ea0243a-4604-4e7e-95d5-d38214c7bb5d.jpg";
 const IMG_BATHROOM = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/b505ebea-ce7a-45e8-bd21-1d7d4093d944.jpg";
 
+const IMG_TABLE_GARDEN = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/49bc2758-06d6-4fed-ae2d-f7c1051231d0.JPG";
+const IMG_TABLE_SLAB = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/5dd49998-69a5-4c93-b224-02d93bd98764.JPG";
+
 const IMG_STAIR_FORGED = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/702b067d-0ff2-4d3f-afa8-3cfe8729fae4.JPG";
 const IMG_STAIR_GLASS = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/ed43590b-4e8e-4807-9bf8-ac213a25aa3c.JPG";
 const IMG_STAIR_DARK = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/1ed045b0-ba24-462d-98ff-817d7ac796ab.JPG";
@@ -26,6 +29,8 @@ const works = [
   { id: 1, title: "Кухня из тёмного ореха", category: "Кухни", img: IMG_KITCHEN_WALNUT, location: "Рублёвское шоссе", year: "2024", area: "22 м²" },
   { id: 2, title: "Гардеробная в светлом дубе", category: "Шкафы", img: IMG_WARDROBE_OAK, location: "Санкт-Петербург", year: "2024", area: "12 м²" },
   { id: 4, title: "Стол и стулья из дуба", category: "Столы", img: IMG_TABLE_OAK, location: "Подмосковье, Одинцово", year: "2024", area: "Индивидуально" },
+  { id: 18, title: "Садовый комплект из массива", category: "Столы", img: IMG_TABLE_GARDEN, location: "", year: "2025", area: "Индивидуально" },
+  { id: 19, title: "Стол-слэб из дуба на металлокаркасе", category: "Столы", img: IMG_TABLE_SLAB, location: "", year: "2025", area: "Индивидуально" },
   { id: 9, title: "Кухня бежевая с рифлёным фасадом", category: "Кухни", img: IMG_KITCHEN_BEIGE_FLUTE, location: "", year: "2025", area: "20 м²" },
   { id: 10, title: "Кухня серая с деревом", category: "Кухни", img: IMG_KITCHEN_GRAY_WOOD, location: "", year: "2025", area: "18 м²" },
   { id: 11, title: "Кухня кремовая с мраморным фартуком", category: "Кухни", img: IMG_KITCHEN_CREAM, location: "", year: "2025", area: "16 м²" },
