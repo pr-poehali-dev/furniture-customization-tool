@@ -14,7 +14,13 @@ const IMG_TABLE_OAK = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-
 const IMG_OFFICE = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/3ea0243a-4604-4e7e-95d5-d38214c7bb5d.jpg";
 const IMG_BATHROOM = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/b505ebea-ce7a-45e8-bd21-1d7d4093d944.jpg";
 
-const filters = ["Все", "Кухни", "Шкафы", "Гостиные", "Кабинеты", "Столы", "Ванные"];
+const IMG_STAIR_FORGED = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/702b067d-0ff2-4d3f-afa8-3cfe8729fae4.JPG";
+const IMG_STAIR_GLASS = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/ed43590b-4e8e-4807-9bf8-ac213a25aa3c.JPG";
+const IMG_STAIR_DARK = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/1ed045b0-ba24-462d-98ff-817d7ac796ab.JPG";
+const IMG_STAIR_SPIRAL_OAK = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/5d0e9c23-b369-4880-93ed-64dae4c09c29.JPG";
+const IMG_STAIR_DARK_GLASS = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/1126e138-c9b1-4995-a816-26e765d4e6d2.JPG";
+
+const filters = ["Все", "Кухни", "Шкафы", "Гостиные", "Кабинеты", "Столы", "Ванные", "Лестницы"];
 
 const works = [
   { id: 1, title: "Кухня из тёмного ореха", category: "Кухни", img: IMG_KITCHEN_WALNUT, location: "Рублёвское шоссе", year: "2024", area: "22 м²" },
@@ -27,7 +33,12 @@ const works = [
   { id: 10, title: "Кухня серая с деревом", category: "Кухни", img: IMG_KITCHEN_GRAY_WOOD, location: "", year: "2025", area: "18 м²" },
   { id: 11, title: "Кухня кремовая с мраморным фартуком", category: "Кухни", img: IMG_KITCHEN_CREAM, location: "", year: "2025", area: "16 м²" },
   { id: 12, title: "Кухня белая глянцевая", category: "Кухни", img: IMG_KITCHEN_WHITE_GLOSS, location: "", year: "2025", area: "22 м²" },
-  { id: 8, title: "Встроенный шкаф-купе", category: "Шкафы", img: IMG_WARDROBE_OAK, location: "Москва, Новая Рига", year: "2023", area: "16 м²" },
+  { id: 8, title: "Встроенный шкаф-купе", category: "Шкафы", img: IMG_WARDROBE_OAK, location: "Новая Рига", year: "2023", area: "16 м²" },
+  { id: 13, title: "Лестница с кованым ограждением", category: "Лестницы", img: IMG_STAIR_FORGED, location: "", year: "2024", area: "Индивидуально" },
+  { id: 14, title: "Лестница из дуба со стеклом", category: "Лестницы", img: IMG_STAIR_GLASS, location: "", year: "2025", area: "Индивидуально" },
+  { id: 15, title: "Лестница венге с балясинами", category: "Лестницы", img: IMG_STAIR_DARK, location: "", year: "2024", area: "Индивидуально" },
+  { id: 16, title: "Винтовая лестница из дуба", category: "Лестницы", img: IMG_STAIR_SPIRAL_OAK, location: "", year: "2025", area: "Индивидуально" },
+  { id: 17, title: "Тёмная лестница со стеклянным ограждением", category: "Лестницы", img: IMG_STAIR_DARK_GLASS, location: "", year: "2025", area: "Индивидуально" },
 ];
 
 export default function Portfolio() {
