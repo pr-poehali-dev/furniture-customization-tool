@@ -4,6 +4,10 @@ import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
 
 const IMG_KITCHEN_WALNUT = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/6b303acd-fdb4-4c7d-85f1-3b9a80af7c8d.jpg";
+const IMG_KITCHEN_BEIGE_FLUTE = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/0e2b560d-1718-42eb-b022-b7e958a08722.jpg";
+const IMG_KITCHEN_GRAY_WOOD = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/c3138424-3623-4349-8b5b-d570581669f4.jpg";
+const IMG_KITCHEN_CREAM = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/8b2f2d09-3d93-4bd7-a996-35e785f89a8e.jpg";
+const IMG_KITCHEN_WHITE_GLOSS = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/74b7bcad-ffc7-4e43-a3cf-08878d74fd11.jpg";
 const IMG_WARDROBE_OAK = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/81ea9c87-b222-4c9e-851e-a677bee3768b.jpg";
 const IMG_SHELVING = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/cafba108-ef00-4973-8d33-8aa9c06d7451.jpg";
 const IMG_TABLE_OAK = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/f2cca7b2-9547-4032-bc01-c1c5db17a51c.jpg";
@@ -20,6 +24,10 @@ const works = [
   { id: 5, title: "Кабинет руководителя", category: "Кабинеты", img: IMG_OFFICE, location: "Москва, ММДЦ", year: "2023", area: "35 м²" },
   { id: 6, title: "Тумба в ванную White & Gold", category: "Ванные", img: IMG_BATHROOM, location: "Москва, Красная Поляна", year: "2024", area: "8 м²" },
   { id: 7, title: "Кухня-остров в белом лаке", category: "Кухни", img: IMG_SHELVING, location: "Красногорск", year: "2024", area: "24 м²" },
+  { id: 9, title: "Кухня бежевая с рифлёным фасадом", category: "Кухни", img: IMG_KITCHEN_BEIGE_FLUTE, location: "Москва", year: "2025", area: "20 м²" },
+  { id: 10, title: "Кухня серая с деревом", category: "Кухни", img: IMG_KITCHEN_GRAY_WOOD, location: "Москва", year: "2025", area: "18 м²" },
+  { id: 11, title: "Кухня кремовая с мраморным фартуком", category: "Кухни", img: IMG_KITCHEN_CREAM, location: "Москва", year: "2025", area: "16 м²" },
+  { id: 12, title: "Кухня белая глянцевая", category: "Кухни", img: IMG_KITCHEN_WHITE_GLOSS, location: "Москва", year: "2025", area: "22 м²" },
   { id: 8, title: "Встроенный шкаф-купе", category: "Шкафы", img: IMG_WARDROBE_OAK, location: "Москва, Новая Рига", year: "2023", area: "16 м²" },
 ];
 
