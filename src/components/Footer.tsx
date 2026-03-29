@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#080604] border-t border-[#c9a96e]/15">
       <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
           <div>
             <Link to="/" className="flex flex-col leading-none mb-6 inline-block">
               <span className="font-cormorant text-2xl font-light tracking-[0.15em] text-[#e8d5b0]">
@@ -29,32 +29,6 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-          </div>
-
-          <div>
-            <h4 className="font-golos text-xs tracking-[0.25em] uppercase text-[#c9a96e] mb-6">
-              Каталог
-            </h4>
-            <ul className="space-y-3">
-              {[
-                ["Кухни", "/catalog"],
-                ["Шкафы-купе", "/catalog"],
-                ["Детские комнаты", "/catalog"],
-                ["Офисная мебель", "/catalog"],
-                ["Обеденные столы", "/catalog"],
-                ["Интерьерные лестницы", "/catalog"],
-                ["Двери из массива", "/catalog"],
-              ].map(([label, path]) => (
-                <li key={label}>
-                  <Link
-                    to={path}
-                    className="text-sm text-[#e8d5b0]/50 hover:text-[#c9a96e] transition-colors duration-300 font-golos"
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
 
           <div>

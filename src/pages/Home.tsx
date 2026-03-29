@@ -10,11 +10,11 @@ const STAIR_IMG = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c
 const KIDS_IMG = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/b0a9d7a1-b2fe-4cbc-bbf9-789b4270776a.jpg";
 
 const categories = [
-  { title: "Кухни", desc: "Индивидуальные кухонные гарнитуры", img: KITCHEN_IMG, path: "/catalog" },
-  { title: "Шкафы", desc: "Распашные и встроенные шкафы", img: WARDROBE_IMG, path: "/catalog" },
-  { title: "Детские", desc: "Безопасная мебель для детей", img: KIDS_IMG, path: "/catalog" },
-  { title: "Столы из слэба", desc: "Обеденные столы из массива дерева", img: TABLE_IMG, path: "/catalog" },
-  { title: "Лестницы", desc: "Интерьерные лестницы из дерева", img: STAIR_IMG, path: "/catalog" },
+  { title: "Кухни", desc: "Индивидуальные кухонные гарнитуры", img: KITCHEN_IMG, path: "/portfolio" },
+  { title: "Шкафы", desc: "Распашные и встроенные шкафы", img: WARDROBE_IMG, path: "/portfolio" },
+  { title: "Детские", desc: "Безопасная мебель для детей", img: KIDS_IMG, path: "/portfolio" },
+  { title: "Столы из слэба", desc: "Обеденные столы из массива дерева", img: TABLE_IMG, path: "/portfolio" },
+  { title: "Лестницы", desc: "Интерьерные лестницы из дерева", img: STAIR_IMG, path: "/portfolio" },
 ];
 
 const advantages = [
@@ -66,8 +66,8 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap gap-4 animate-fade-in animate-delay-300">
-              <Link to="/catalog" className="btn-gold">
-                Смотреть каталог
+              <Link to="/portfolio" className="btn-gold">
+                Смотреть работы
               </Link>
               <Link to="/calculator" className="btn-outline-gold">
                 Рассчитать стоимость
@@ -131,8 +131,8 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-10">
-            <Link to="/catalog" className="btn-outline-gold">
-              Весь каталог
+            <Link to="/portfolio" className="btn-outline-gold">
+              Все работы
             </Link>
           </div>
         </div>
