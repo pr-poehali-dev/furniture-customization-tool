@@ -20,15 +20,12 @@ const IMG_STAIR_DARK = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a
 const IMG_STAIR_SPIRAL_OAK = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/5d0e9c23-b369-4880-93ed-64dae4c09c29.JPG";
 const IMG_STAIR_DARK_GLASS = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/1126e138-c9b1-4995-a816-26e765d4e6d2.JPG";
 
-const filters = ["Все", "Кухни", "Шкафы", "Гостиные", "Кабинеты", "Столы", "Ванные", "Лестницы"];
+const filters = ["Все", "Кухни", "Шкафы", "Столы", "Лестницы"];
 
 const works = [
   { id: 1, title: "Кухня из тёмного ореха", category: "Кухни", img: IMG_KITCHEN_WALNUT, location: "Рублёвское шоссе", year: "2024", area: "22 м²" },
   { id: 2, title: "Гардеробная в светлом дубе", category: "Шкафы", img: IMG_WARDROBE_OAK, location: "Санкт-Петербург", year: "2024", area: "12 м²" },
-  { id: 3, title: "Стеллаж в гостиную", category: "Гостиные", img: IMG_SHELVING, location: "Пресня", year: "2024", area: "18 м²" },
   { id: 4, title: "Стол и стулья из дуба", category: "Столы", img: IMG_TABLE_OAK, location: "Подмосковье, Одинцово", year: "2024", area: "Индивидуально" },
-  { id: 5, title: "Кабинет руководителя", category: "Кабинеты", img: IMG_OFFICE, location: "ММДЦ", year: "2023", area: "35 м²" },
-  { id: 6, title: "Тумба в ванную White & Gold", category: "Ванные", img: IMG_BATHROOM, location: "Красная Поляна", year: "2024", area: "8 м²" },
   { id: 9, title: "Кухня бежевая с рифлёным фасадом", category: "Кухни", img: IMG_KITCHEN_BEIGE_FLUTE, location: "", year: "2025", area: "20 м²" },
   { id: 10, title: "Кухня серая с деревом", category: "Кухни", img: IMG_KITCHEN_GRAY_WOOD, location: "", year: "2025", area: "18 м²" },
   { id: 11, title: "Кухня кремовая с мраморным фартуком", category: "Кухни", img: IMG_KITCHEN_CREAM, location: "", year: "2025", area: "16 м²" },
