@@ -17,17 +17,16 @@ const IMG_BATHROOM = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4
 const filters = ["Все", "Кухни", "Шкафы", "Гостиные", "Кабинеты", "Столы", "Ванные"];
 
 const works = [
-  { id: 1, title: "Кухня из тёмного ореха", category: "Кухни", img: IMG_KITCHEN_WALNUT, location: "Москва, Рублёвское шоссе", year: "2024", area: "22 м²" },
+  { id: 1, title: "Кухня из тёмного ореха", category: "Кухни", img: IMG_KITCHEN_WALNUT, location: "Рублёвское шоссе", year: "2024", area: "22 м²" },
   { id: 2, title: "Гардеробная в светлом дубе", category: "Шкафы", img: IMG_WARDROBE_OAK, location: "Санкт-Петербург", year: "2024", area: "12 м²" },
-  { id: 3, title: "Стеллаж в гостиную", category: "Гостиные", img: IMG_SHELVING, location: "Москва, Пресня", year: "2024", area: "18 м²" },
+  { id: 3, title: "Стеллаж в гостиную", category: "Гостиные", img: IMG_SHELVING, location: "Пресня", year: "2024", area: "18 м²" },
   { id: 4, title: "Стол и стулья из дуба", category: "Столы", img: IMG_TABLE_OAK, location: "Подмосковье, Одинцово", year: "2024", area: "Индивидуально" },
-  { id: 5, title: "Кабинет руководителя", category: "Кабинеты", img: IMG_OFFICE, location: "Москва, ММДЦ", year: "2023", area: "35 м²" },
-  { id: 6, title: "Тумба в ванную White & Gold", category: "Ванные", img: IMG_BATHROOM, location: "Москва, Красная Поляна", year: "2024", area: "8 м²" },
-  { id: 7, title: "Кухня-остров в белом лаке", category: "Кухни", img: IMG_SHELVING, location: "Красногорск", year: "2024", area: "24 м²" },
-  { id: 9, title: "Кухня бежевая с рифлёным фасадом", category: "Кухни", img: IMG_KITCHEN_BEIGE_FLUTE, location: "Москва", year: "2025", area: "20 м²" },
-  { id: 10, title: "Кухня серая с деревом", category: "Кухни", img: IMG_KITCHEN_GRAY_WOOD, location: "Москва", year: "2025", area: "18 м²" },
-  { id: 11, title: "Кухня кремовая с мраморным фартуком", category: "Кухни", img: IMG_KITCHEN_CREAM, location: "Москва", year: "2025", area: "16 м²" },
-  { id: 12, title: "Кухня белая глянцевая", category: "Кухни", img: IMG_KITCHEN_WHITE_GLOSS, location: "Москва", year: "2025", area: "22 м²" },
+  { id: 5, title: "Кабинет руководителя", category: "Кабинеты", img: IMG_OFFICE, location: "ММДЦ", year: "2023", area: "35 м²" },
+  { id: 6, title: "Тумба в ванную White & Gold", category: "Ванные", img: IMG_BATHROOM, location: "Красная Поляна", year: "2024", area: "8 м²" },
+  { id: 9, title: "Кухня бежевая с рифлёным фасадом", category: "Кухни", img: IMG_KITCHEN_BEIGE_FLUTE, location: "", year: "2025", area: "20 м²" },
+  { id: 10, title: "Кухня серая с деревом", category: "Кухни", img: IMG_KITCHEN_GRAY_WOOD, location: "", year: "2025", area: "18 м²" },
+  { id: 11, title: "Кухня кремовая с мраморным фартуком", category: "Кухни", img: IMG_KITCHEN_CREAM, location: "", year: "2025", area: "16 м²" },
+  { id: 12, title: "Кухня белая глянцевая", category: "Кухни", img: IMG_KITCHEN_WHITE_GLOSS, location: "", year: "2025", area: "22 м²" },
   { id: 8, title: "Встроенный шкаф-купе", category: "Шкафы", img: IMG_WARDROBE_OAK, location: "Москва, Новая Рига", year: "2023", area: "16 м²" },
 ];
 
