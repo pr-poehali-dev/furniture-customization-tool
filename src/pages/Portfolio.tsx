@@ -17,6 +17,12 @@ const IMG_BATHROOM = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4
 const IMG_TABLE_GARDEN = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/49bc2758-06d6-4fed-ae2d-f7c1051231d0.JPG";
 const IMG_TABLE_SLAB = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/5dd49998-69a5-4c93-b224-02d93bd98764.JPG";
 
+const IMG_KITCHEN_WHITE_WOOD = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/a7a98d6d-06fa-4429-9393-6c712564b3c1.jpg";
+const IMG_KITCHEN_CAPPUCCINO = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/90d6cc51-5b1d-4fd1-87ea-ae0f49705842.jpg";
+const IMG_KITCHEN_TAUPE_GLOSS = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/46dedb1f-33ef-4e8a-a992-7a9e87bfd44a.jpg";
+const IMG_KITCHEN_GRAY_MARBLE = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/a1aa159d-8478-4c31-9016-e8af0c5717e6.jpg";
+const IMG_KITCHEN_NUDE_DINING = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/f8f646f8-b3c9-4934-91bc-61b64cd8535e.jpg";
+
 const IMG_WARDROBE_BEIGE_WALK = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/8b5b42a8-4fb3-4b1b-a747-13385ff5386d.jpg";
 const IMG_WARDROBE_LIGHT_MAPLE = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/1d075a80-8c47-4040-9b7b-13b15ffbf624.jpg";
 const IMG_WARDROBE_WALNUT_WHITE = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/4b8a14b3-d16d-43f0-949d-bf213f7e9fe3.jpg";
@@ -41,6 +47,11 @@ const works = [
   { id: 10, title: "Кухня серая с деревом", category: "Кухни", img: IMG_KITCHEN_GRAY_WOOD, location: "", year: "2025", area: "18 м²" },
   { id: 11, title: "Кухня кремовая с мраморным фартуком", category: "Кухни", img: IMG_KITCHEN_CREAM, location: "", year: "2025", area: "16 м²" },
   { id: 12, title: "Кухня белая глянцевая", category: "Кухни", img: IMG_KITCHEN_WHITE_GLOSS, location: "", year: "2025", area: "22 м²" },
+  { id: 25, title: "Кухня белая с деревянными верхами", category: "Кухни", img: IMG_KITCHEN_WHITE_WOOD, location: "", year: "2025", area: "19 м²" },
+  { id: 26, title: "Угловая кухня капучино матовая", category: "Кухни", img: IMG_KITCHEN_CAPPUCCINO, location: "", year: "2025", area: "12 м²" },
+  { id: 27, title: "Кухня мокко глянцевая с подсветкой", category: "Кухни", img: IMG_KITCHEN_TAUPE_GLOSS, location: "", year: "2025", area: "24 м²" },
+  { id: 28, title: "Угловая кухня серая с мрамором", category: "Кухни", img: IMG_KITCHEN_GRAY_MARBLE, location: "", year: "2025", area: "16 м²" },
+  { id: 29, title: "Кухня нюд с обеденной зоной", category: "Кухни", img: IMG_KITCHEN_NUDE_DINING, location: "", year: "2025", area: "20 м²" },
   { id: 8, title: "Встроенный шкаф-купе", category: "Шкафы-гардеробы", img: IMG_WARDROBE_OAK, location: "Новая Рига", year: "2023", area: "16 м²" },
   { id: 20, title: "Гардеробная в бежевых тонах", category: "Шкафы-гардеробы", img: IMG_WARDROBE_BEIGE_WALK, location: "", year: "2025", area: "14 м²" },
   { id: 21, title: "Гардеробная из светлого клёна", category: "Шкафы-гардеробы", img: IMG_WARDROBE_LIGHT_MAPLE, location: "", year: "2025", area: "10 м²" },
