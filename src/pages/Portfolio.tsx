@@ -17,17 +17,23 @@ const IMG_BATHROOM = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4
 const IMG_TABLE_GARDEN = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/49bc2758-06d6-4fed-ae2d-f7c1051231d0.JPG";
 const IMG_TABLE_SLAB = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/5dd49998-69a5-4c93-b224-02d93bd98764.JPG";
 
+const IMG_WARDROBE_BEIGE_WALK = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/8b5b42a8-4fb3-4b1b-a747-13385ff5386d.jpg";
+const IMG_WARDROBE_LIGHT_MAPLE = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/1d075a80-8c47-4040-9b7b-13b15ffbf624.jpg";
+const IMG_WARDROBE_WALNUT_WHITE = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/4b8a14b3-d16d-43f0-949d-bf213f7e9fe3.jpg";
+const IMG_WARDROBE_WHITE_CORNER = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/579e37f9-f2cb-4437-a1cf-7fd15a01571f.jpg";
+const IMG_WARDROBE_WHITE_LARGE = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/434f0fae-d36b-4d9f-abe2-d8f66ca00b52.jpg";
+
 const IMG_STAIR_FORGED = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/702b067d-0ff2-4d3f-afa8-3cfe8729fae4.JPG";
 const IMG_STAIR_GLASS = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/ed43590b-4e8e-4807-9bf8-ac213a25aa3c.JPG";
 const IMG_STAIR_DARK = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/1ed045b0-ba24-462d-98ff-817d7ac796ab.JPG";
 const IMG_STAIR_SPIRAL_OAK = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/5d0e9c23-b369-4880-93ed-64dae4c09c29.JPG";
 const IMG_STAIR_DARK_GLASS = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/1126e138-c9b1-4995-a816-26e765d4e6d2.JPG";
 
-const filters = ["Все", "Кухни", "Шкафы", "Столы", "Лестницы"];
+const filters = ["Все", "Кухни", "Шкафы-гардеробы", "Столы", "Лестницы"];
 
 const works = [
   { id: 1, title: "Кухня из тёмного ореха", category: "Кухни", img: IMG_KITCHEN_WALNUT, location: "Рублёвское шоссе", year: "2024", area: "22 м²" },
-  { id: 2, title: "Гардеробная в светлом дубе", category: "Шкафы", img: IMG_WARDROBE_OAK, location: "Санкт-Петербург", year: "2024", area: "12 м²" },
+  { id: 2, title: "Гардеробная в светлом дубе", category: "Шкафы-гардеробы", img: IMG_WARDROBE_OAK, location: "Санкт-Петербург", year: "2024", area: "12 м²" },
   { id: 4, title: "Стол и стулья из дуба", category: "Столы", img: IMG_TABLE_OAK, location: "Подмосковье, Одинцово", year: "2024", area: "Индивидуально" },
   { id: 18, title: "Садовый комплект из массива", category: "Столы", img: IMG_TABLE_GARDEN, location: "", year: "2025", area: "Индивидуально" },
   { id: 19, title: "Стол-слэб из дуба на металлокаркасе", category: "Столы", img: IMG_TABLE_SLAB, location: "", year: "2025", area: "Индивидуально" },
@@ -35,7 +41,12 @@ const works = [
   { id: 10, title: "Кухня серая с деревом", category: "Кухни", img: IMG_KITCHEN_GRAY_WOOD, location: "", year: "2025", area: "18 м²" },
   { id: 11, title: "Кухня кремовая с мраморным фартуком", category: "Кухни", img: IMG_KITCHEN_CREAM, location: "", year: "2025", area: "16 м²" },
   { id: 12, title: "Кухня белая глянцевая", category: "Кухни", img: IMG_KITCHEN_WHITE_GLOSS, location: "", year: "2025", area: "22 м²" },
-  { id: 8, title: "Встроенный шкаф-купе", category: "Шкафы", img: IMG_WARDROBE_OAK, location: "Новая Рига", year: "2023", area: "16 м²" },
+  { id: 8, title: "Встроенный шкаф-купе", category: "Шкафы-гардеробы", img: IMG_WARDROBE_OAK, location: "Новая Рига", year: "2023", area: "16 м²" },
+  { id: 20, title: "Гардеробная в бежевых тонах", category: "Шкафы-гардеробы", img: IMG_WARDROBE_BEIGE_WALK, location: "", year: "2025", area: "14 м²" },
+  { id: 21, title: "Гардеробная из светлого клёна", category: "Шкафы-гардеробы", img: IMG_WARDROBE_LIGHT_MAPLE, location: "", year: "2025", area: "10 м²" },
+  { id: 22, title: "Гардеробная орех с белым", category: "Шкафы-гардеробы", img: IMG_WARDROBE_WALNUT_WHITE, location: "", year: "2025", area: "12 м²" },
+  { id: 23, title: "Угловая гардеробная белая", category: "Шкафы-гардеробы", img: IMG_WARDROBE_WHITE_CORNER, location: "", year: "2025", area: "8 м²" },
+  { id: 24, title: "Просторная гардеробная белая", category: "Шкафы-гардеробы", img: IMG_WARDROBE_WHITE_LARGE, location: "", year: "2025", area: "18 м²" },
   { id: 13, title: "Лестница с кованым ограждением", category: "Лестницы", img: IMG_STAIR_FORGED, location: "", year: "2024", area: "Индивидуально" },
   { id: 14, title: "Лестница из дуба со стеклом", category: "Лестницы", img: IMG_STAIR_GLASS, location: "", year: "2025", area: "Индивидуально" },
   { id: 15, title: "Лестница венге с балясинами", category: "Лестницы", img: IMG_STAIR_DARK, location: "", year: "2024", area: "Индивидуально" },
