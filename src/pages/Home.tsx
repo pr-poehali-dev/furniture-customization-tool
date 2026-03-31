@@ -1,6 +1,37 @@
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 import Layout from "@/components/Layout";
+import SEOHead from "@/components/SEOHead";
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "ЭЛИУТ",
+  "description": "Мебельная мастерская. Корпусная мебель, кухни, шкафы, лестницы из массива и столы из слэба. Ручная работа.",
+  "url": "https://eliut.ru",
+  "telephone": "+79959080228",
+  "email": "info@artes-mebel.ru",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Барнаул",
+    "addressRegion": "Алтайский край",
+    "addressCountry": "RU"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "addressCountry": "RU"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "09:00",
+    "closes": "19:00"
+  },
+  "priceRange": "₽₽₽",
+  "foundingDate": "2010",
+  "numberOfEmployees": 60,
+  "sameAs": []
+};
 
 const HERO_IMG = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/7955e3dc-d27c-47ff-9e56-f4a2cd469bdc.jpg";
 const KITCHEN_IMG = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/86ec8339-1491-4b18-b054-ab0e77b7da6a.jpg";
@@ -36,6 +67,12 @@ const stats = [
 export default function Home() {
   return (
     <Layout>
+      <SEOHead
+        title="ЭЛИУТ — Мебель ручной работы в Барнауле"
+        description="Мебельная мастерская ЭЛИУТ с 2010 года. Кухни на заказ, шкафы, лестницы из массива, столы из слэба. Более 2400 проектов, гарантия 5 лет. Барнаул."
+        canonical="/"
+        schema={localBusinessSchema}
+      />
       {/* Hero */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div

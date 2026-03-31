@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
+import SEOHead from "@/components/SEOHead";
 
 const services = [
   {
@@ -64,6 +65,11 @@ const services = [
 export default function Services() {
   return (
     <Layout>
+      <SEOHead
+        title="Услуги — Кухни, шкафы, лестницы на заказ"
+        description="Кухни от 290 000 ₽, шкафы от 75 000 ₽, лестницы от 300 000 ₽, двери из массива, столы из слэба, 3D-визуализация. Мебель на заказ в Барнауле — ЭЛИУТ."
+        canonical="/services"
+      />
       {/* Header */}
       <section className="pt-40 pb-16 bg-[#0e0a06]">
         <div className="container mx-auto px-6">

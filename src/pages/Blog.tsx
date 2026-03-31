@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
+import SEOHead from "@/components/SEOHead";
 
 const KITCHEN_IMG = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/86ec8339-1491-4b18-b054-ab0e77b7da6a.jpg";
 const WARDROBE_IMG = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/7cacd572-5b88-49ca-912c-3acf1474efcc.jpg";
@@ -84,6 +85,11 @@ export default function Blog() {
 
   return (
     <Layout>
+      <SEOHead
+        title="Блог — Советы по мебели и дизайну интерьера"
+        description="Полезные статьи о выборе материалов для кухни, трендах мебели 2024, ошибках при заказе шкафов и дизайне лестниц. Блог мастерской ЭЛИУТ, Барнаул."
+        canonical="/blog"
+      />
       {/* Header */}
       <section className="pt-40 pb-16 bg-[#0e0a06]">
         <div className="container mx-auto px-6">

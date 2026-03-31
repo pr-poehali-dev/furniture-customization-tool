@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
+import SEOHead from "@/components/SEOHead";
 
 const HERO_IMG = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/7955e3dc-d27c-47ff-9e56-f4a2cd469bdc.jpg";
 
@@ -21,6 +22,11 @@ const values = [
 export default function About() {
   return (
     <Layout>
+      <SEOHead
+        title="О компании — Мебельная мастерская с 2010 года"
+        description="ЭЛИУТ — мебельная мастерская в Барнауле с 2010 года. 60 мастеров, 2400+ проектов, 14 лет опыта. Узнайте о нашей команде, ценностях и истории."
+        canonical="/about"
+      />
       {/* Header */}
       <section className="relative pt-40 pb-24 overflow-hidden">
         <div

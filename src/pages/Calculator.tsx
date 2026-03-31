@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
+import SEOHead from "@/components/SEOHead";
 import func2url from "../../backend/func2url.json";
 import {
   CategoryId,
@@ -89,6 +90,11 @@ export default function Calculator() {
 
   return (
     <Layout>
+      <SEOHead
+        title="Калькулятор стоимости мебели на заказ"
+        description="Рассчитайте стоимость мебели онлайн: кухни, шкафы, лестницы, детские. Укажите параметры и получите точную оценку за 2 минуты. Мастерская ЭЛИУТ, Барнаул."
+        canonical="/calculator"
+      />
       <section className="pt-40 pb-16 bg-[#0e0a06]">
         <div className="container mx-auto px-6">
           <span className="font-golos text-xs tracking-[0.3em] uppercase text-[#c9a96e] block mb-4">

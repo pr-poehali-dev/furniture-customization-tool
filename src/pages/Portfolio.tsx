@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
+import SEOHead from "@/components/SEOHead";
 
 const IMG_KITCHEN_WALNUT = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/files/6b303acd-fdb4-4c7d-85f1-3b9a80af7c8d.jpg";
 const IMG_KITCHEN_BEIGE_FLUTE = "https://cdn.poehali.dev/projects/878a09aa-723c-4f33-948a-4d8c22dcc672/bucket/0e2b560d-1718-42eb-b022-b7e958a08722.jpg";
@@ -73,6 +74,11 @@ export default function Portfolio() {
 
   return (
     <Layout>
+      <SEOHead
+        title="Портфолио — Мебель ручной работы"
+        description="Более 2400 реализованных проектов ЭЛИУТ: кухни, шкафы-гардеробы, столы из слэба, интерьерные лестницы. Смотрите фото наших работ в Барнауле."
+        canonical="/portfolio"
+      />
       {/* Header */}
       <section className="pt-40 pb-16 bg-[#0e0a06]">
         <div className="container mx-auto px-6">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
+import SEOHead from "@/components/SEOHead";
 
 export default function Contacts() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
@@ -13,6 +14,11 @@ export default function Contacts() {
 
   return (
     <Layout>
+      <SEOHead
+        title="Контакты — Мебельная мастерская ЭЛИУТ"
+        description="Свяжитесь с мастерской ЭЛИУТ в Барнауле. Телефон: +7 (995) 908-02-28. Режим работы: пн–сб 09:00–19:00. Оставьте заявку на расчёт стоимости мебели."
+        canonical="/contacts"
+      />
       {/* Header */}
       <section className="pt-40 pb-16 bg-[#0e0a06]">
         <div className="container mx-auto px-6">

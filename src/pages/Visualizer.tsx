@@ -2,10 +2,16 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Furniture3DViewer from "@/components/Furniture3DViewer";
 import Icon from "@/components/ui/icon";
+import SEOHead from "@/components/SEOHead";
 
 export default function Visualizer() {
   return (
     <Layout>
+      <SEOHead
+        title="3D-визуализация мебели онлайн"
+        description="Посмотрите как будет выглядеть ваша мебель в 3D до начала производства. Фотореалистичный рендер, выбор материалов и цветов. ЭЛИУТ, Барнаул. От 8 000 ₽."
+        canonical="/visualizer"
+      />
       {/* Header */}
       <section className="pt-40 pb-16 bg-[#0e0a06]">
         <div className="container mx-auto px-6">

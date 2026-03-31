@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
+import SEOHead from "@/components/SEOHead";
 
 const faqs = [
   {
@@ -78,11 +79,32 @@ const faqs = [
   },
 ];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.flatMap((section) =>
+    section.questions.map((item) => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.a,
+      },
+    }))
+  ),
+};
+
 export default function FAQ() {
   const [openItem, setOpenItem] = useState<string | null>(null);
 
   return (
     <Layout>
+      <SEOHead
+        title="Частые вопросы — Мебель на заказ ЭЛИУТ"
+        description="Ответы на частые вопросы о заказе мебели: сроки изготовления, материалы, цены, доставка и монтаж, гарантии. Мастерская ЭЛИУТ, Барнаул."
+        canonical="/faq"
+        schema={faqSchema}
+      />
       {/* Header */}
       <section className="pt-40 pb-16 bg-[#0e0a06]">
         <div className="container mx-auto px-6">
