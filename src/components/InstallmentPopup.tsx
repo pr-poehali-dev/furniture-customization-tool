@@ -9,15 +9,24 @@ const InstallmentPopup = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const dismissed = sessionStorage.getItem("installment_dismissed");
-    if (dismissed) return;
-    const timer = setTimeout(() => setIsOpen(true), 4000);
-    return () => clearTimeout(timer);
+    const submitted = localStorage.getItem("installment_submitted");
+    if (submitted) return;
+
+    const firstTimer = setTimeout(() => setIsOpen(true), 4000);
+
+    const interval = setInterval(() => {
+      const alreadySubmitted = localStorage.getItem("installment_submitted");
+      if (!alreadySubmitted) setIsOpen(true);
+    }, 2 * 60 * 1000);
+
+    return () => {
+      clearTimeout(firstTimer);
+      clearInterval(interval);
+    };
   }, []);
 
   const handleClose = () => {
     setIsOpen(false);
-    sessionStorage.setItem("installment_dismissed", "1");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -35,7 +44,7 @@ const InstallmentPopup = () => {
     }
     setLoading(false);
     setSent(true);
-    sessionStorage.setItem("installment_dismissed", "1");
+    localStorage.setItem("installment_submitted", "1");
   };
 
   if (!isOpen) return null;
