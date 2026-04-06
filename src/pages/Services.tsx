@@ -62,6 +62,36 @@ const services = [
   },
 ];
 
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Услуги мебельной мастерской ЭЛИУТ",
+  "url": "https://eliut.ru/services",
+  "itemListElement": services.map((s, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "item": {
+      "@type": "Service",
+      "name": s.title,
+      "description": s.desc,
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "RUB",
+        "price": s.price.replace(/[^0-9]/g, ""),
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "description": s.price,
+        },
+        "seller": {
+          "@type": "LocalBusiness",
+          "name": "ЭЛИУТ",
+          "url": "https://eliut.ru",
+        },
+      },
+    },
+  })),
+};
+
 export default function Services() {
   return (
     <Layout>
@@ -69,6 +99,7 @@ export default function Services() {
         title="Услуги — Кухни, шкафы, лестницы на заказ"
         description="Кухни от 290 000 ₽, шкафы от 75 000 ₽, лестницы от 300 000 ₽, двери из массива, столы из слэба, 3D-визуализация. Мебель на заказ в Барнауле — ЭЛИУТ."
         canonical="/services"
+        schema={servicesSchema}
       />
       {/* Header */}
       <section className="pt-40 pb-16 bg-[#0e0a06]">

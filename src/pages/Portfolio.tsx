@@ -66,6 +66,26 @@ const works = [
   { id: 17, title: "Тёмная лестница со стеклянным ограждением", category: "Лестницы", img: IMG_STAIR_DARK_GLASS, location: "", year: "2025", area: "Индивидуально" },
 ];
 
+const portfolioSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Портфолио ЭЛИУТ — мебель ручной работы",
+  "description": "Более 2400 реализованных проектов: кухни, шкафы-гардеробы, столы из слэба, интерьерные лестницы.",
+  "url": "https://eliut.ru/portfolio",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "ЭЛИУТ",
+    "url": "https://eliut.ru"
+  },
+  "hasPart": works.map((w) => ({
+    "@type": "ImageObject",
+    "name": w.title,
+    "description": `${w.category}, ${w.year}${w.area !== "Индивидуально" ? `, ${w.area}` : ""}`,
+    "contentUrl": w.img,
+    "url": "https://eliut.ru/portfolio",
+  })),
+};
+
 export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState("Все");
   const [selected, setSelected] = useState<null | typeof works[0]>(null);
@@ -78,6 +98,7 @@ export default function Portfolio() {
         title="Портфолио — Мебель ручной работы"
         description="Более 2400 реализованных проектов ЭЛИУТ: кухни, шкафы-гардеробы, столы из слэба, интерьерные лестницы. Смотрите фото наших работ в Барнауле."
         canonical="/portfolio"
+        schema={portfolioSchema}
       />
       {/* Header */}
       <section className="pt-40 pb-16 bg-[#0e0a06]">
