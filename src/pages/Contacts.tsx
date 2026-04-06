@@ -18,6 +18,7 @@ export default function Contacts() {
         title="Контакты — Мебельная мастерская ЭЛИУТ"
         description="Свяжитесь с мастерской ЭЛИУТ в Барнауле. Телефон: +7 (995) 908-02-28. Режим работы: пн–сб 09:00–19:00. Оставьте заявку на расчёт стоимости мебели."
         canonical="/contacts"
+        breadcrumbs={[{ name: "Контакты", path: "/contacts" }]}
       />
       {/* Header */}
       <section className="pt-40 pb-16 bg-[#0e0a06]">

@@ -26,6 +26,7 @@ export default function About() {
         title="О компании — Мебельная мастерская с 2010 года"
         description="ЭЛИУТ — мебельная мастерская в Барнауле с 2010 года. 60 мастеров, 2400+ проектов, 14 лет опыта. Узнайте о нашей команде, ценностях и истории."
         canonical="/about"
+        breadcrumbs={[{ name: "О компании", path: "/about" }]}
       />
       {/* Header */}
       <section className="relative pt-40 pb-24 overflow-hidden">

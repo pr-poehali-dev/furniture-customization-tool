@@ -94,6 +94,7 @@ export default function Calculator() {
         title="Калькулятор стоимости мебели на заказ"
         description="Рассчитайте стоимость мебели онлайн: кухни, шкафы, лестницы, детские. Укажите параметры и получите точную оценку за 2 минуты. Мастерская ЭЛИУТ, Барнаул."
         canonical="/calculator"
+        breadcrumbs={[{ name: "Калькулятор", path: "/calculator" }]}
       />
       <section className="pt-40 pb-16 bg-[#0e0a06]">
         <div className="container mx-auto px-6">

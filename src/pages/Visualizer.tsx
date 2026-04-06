@@ -11,6 +11,7 @@ export default function Visualizer() {
         title="3D-визуализация мебели онлайн"
         description="Посмотрите как будет выглядеть ваша мебель в 3D до начала производства. Фотореалистичный рендер, выбор материалов и цветов. ЭЛИУТ, Барнаул. От 8 000 ₽."
         canonical="/visualizer"
+        breadcrumbs={[{ name: "3D-визуализация", path: "/visualizer" }]}
       />
       {/* Header */}
       <section className="pt-40 pb-16 bg-[#0e0a06]">

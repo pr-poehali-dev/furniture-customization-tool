@@ -99,6 +99,7 @@ export default function Portfolio() {
         description="Более 2400 реализованных проектов ЭЛИУТ: кухни, шкафы-гардеробы, столы из слэба, интерьерные лестницы. Смотрите фото наших работ в Барнауле."
         canonical="/portfolio"
         schema={portfolioSchema}
+        breadcrumbs={[{ name: "Портфолио", path: "/portfolio" }]}
       />
       {/* Header */}
       <section className="pt-40 pb-16 bg-[#0e0a06]">

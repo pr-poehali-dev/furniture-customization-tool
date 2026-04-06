@@ -100,6 +100,7 @@ export default function Services() {
         description="Кухни от 290 000 ₽, шкафы от 75 000 ₽, лестницы от 300 000 ₽, двери из массива, столы из слэба, 3D-визуализация. Мебель на заказ в Барнауле — ЭЛИУТ."
         canonical="/services"
         schema={servicesSchema}
+        breadcrumbs={[{ name: "Услуги", path: "/services" }]}
       />
       {/* Header */}
       <section className="pt-40 pb-16 bg-[#0e0a06]">

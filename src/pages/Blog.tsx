@@ -89,6 +89,7 @@ export default function Blog() {
         title="Блог — Советы по мебели и дизайну интерьера"
         description="Полезные статьи о выборе материалов для кухни, трендах мебели 2026, ошибках при заказе шкафов и дизайне лестниц. Блог мастерской ЭЛИУТ, Барнаул."
         canonical="/blog"
+        breadcrumbs={[{ name: "Блог", path: "/blog" }]}
       />
       {/* Header */}
       <section className="pt-40 pb-16 bg-[#0e0a06]">

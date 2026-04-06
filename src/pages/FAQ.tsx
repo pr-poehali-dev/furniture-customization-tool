@@ -104,6 +104,7 @@ export default function FAQ() {
         description="Ответы на частые вопросы о заказе мебели: сроки изготовления, материалы, цены, доставка и монтаж, гарантии. Мастерская ЭЛИУТ, Барнаул."
         canonical="/faq"
         schema={faqSchema}
+        breadcrumbs={[{ name: "Частые вопросы", path: "/faq" }]}
       />
       {/* Header */}
       <section className="pt-40 pb-16 bg-[#0e0a06]">
