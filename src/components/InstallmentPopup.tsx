@@ -24,7 +24,15 @@ const InstallmentPopup = () => {
     e.preventDefault();
     if (!name.trim() || !phone.trim()) return;
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 800));
+    try {
+      await fetch("https://functions.poehali.dev/fdf20583-ac14-44a6-9474-c32a21b816a5", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone }),
+      });
+    } catch (e) {
+      console.error(e);
+    }
     setLoading(false);
     setSent(true);
     sessionStorage.setItem("installment_dismissed", "1");

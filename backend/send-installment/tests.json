@@ -1,0 +1,19 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Отправка заявки на рассрочку",
+      "method": "POST",
+      "path": "/",
+      "body": { "name": "Тест", "phone": "+7 999 000 00 00" },
+      "expectedStatus": 200,
+      "expectedBody": { "ok": true },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
