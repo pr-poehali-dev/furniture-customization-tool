@@ -13,6 +13,7 @@ const localBusinessSchema = {
   "email": "info@artes-mebel.ru",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "ул. Лесная поляна, 3з",
     "addressLocality": "Барнаул",
     "addressRegion": "Алтайский край",
     "addressCountry": "RU"

@@ -65,7 +65,7 @@ export default function Footer() {
               {[
                 { icon: "Phone", text: "+7 (995) 908-02-28" },
                 { icon: "Mail", text: "info@artes-mebel.ru" },
-                { icon: "MapPin", text: "Барнаул" },
+                { icon: "MapPin", text: "ул. Лесная поляна, 3з, Барнаул" },
                 { icon: "Clock", text: "Пн–Сб: 09:00–19:00" },
               ].map(({ icon, text }) => (
                 <li key={text} className="flex items-start gap-3">
