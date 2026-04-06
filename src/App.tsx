@@ -14,6 +14,7 @@ import FAQ from "./pages/FAQ";
 import Calculator from "./pages/Calculator";
 import Visualizer from "./pages/Visualizer";
 import NotFound from "./pages/NotFound";
+import InstallmentPopup from "./components/InstallmentPopup";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <InstallmentPopup />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />

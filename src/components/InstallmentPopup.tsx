@@ -1,0 +1,132 @@
+import { useState, useEffect } from "react";
+import Icon from "@/components/ui/icon";
+
+const InstallmentPopup = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const dismissed = sessionStorage.getItem("installment_dismissed");
+    if (dismissed) return;
+    const timer = setTimeout(() => setIsOpen(true), 4000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleClose = () => {
+    setIsOpen(false);
+    sessionStorage.setItem("installment_dismissed", "1");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !phone.trim()) return;
+    setLoading(true);
+    await new Promise((r) => setTimeout(r, 800));
+    setLoading(false);
+    setSent(true);
+    sessionStorage.setItem("installment_dismissed", "1");
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        onClick={handleClose}
+      />
+      <div className="relative z-10 w-full max-w-md rounded-sm bg-[#110d08] border border-[#c9a96e]/30 shadow-2xl overflow-hidden">
+        <div
+          className="absolute top-0 left-0 right-0 h-1"
+          style={{ background: "linear-gradient(90deg, #c9a96e, #e8d5b0, #c9a96e)" }}
+        />
+
+        <button
+          onClick={handleClose}
+          className="absolute top-4 right-4 text-[#c9a96e]/60 hover:text-[#c9a96e] transition-colors"
+        >
+          <Icon name="X" size={20} />
+        </button>
+
+        {!sent ? (
+          <div className="p-8">
+            <div className="mb-6 text-center">
+              <div className="inline-flex items-center gap-2 bg-[#c9a96e]/10 border border-[#c9a96e]/30 rounded-full px-4 py-1.5 mb-4">
+                <Icon name="Percent" size={14} className="text-[#c9a96e]" />
+                <span className="text-[#c9a96e] text-xs font-golos tracking-widest uppercase">Специальное предложение</span>
+              </div>
+              <h2 className="font-cormorant text-3xl font-light text-[#e8d5b0] leading-tight mb-3">
+                Вся мебель в рассрочку
+              </h2>
+              <div className="flex items-center justify-center gap-3 mb-3">
+                {["0%", "0₽", "24 мес."].map((item, i) => (
+                  <div key={i} className="text-center">
+                    <div className="font-cormorant text-2xl font-semibold text-[#c9a96e]">{item}</div>
+                    <div className="text-[10px] text-[#c9a96e]/60 uppercase tracking-wider">
+                      {i === 0 ? "переплата" : i === 1 ? "первый взнос" : "срок"}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-[#e8d5b0]/60 text-sm font-golos">
+                Оставьте контакты — менеджер свяжется и подберёт условия
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-3">
+              <input
+                type="text"
+                placeholder="Ваше имя"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                className="w-full bg-[#1a1209] border border-[#c9a96e]/20 rounded-sm px-4 py-3 text-[#e8d5b0] placeholder-[#e8d5b0]/30 focus:outline-none focus:border-[#c9a96e]/60 text-sm font-golos transition-colors"
+              />
+              <input
+                type="tel"
+                placeholder="+7 (___) ___-__-__"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
+                className="w-full bg-[#1a1209] border border-[#c9a96e]/20 rounded-sm px-4 py-3 text-[#e8d5b0] placeholder-[#e8d5b0]/30 focus:outline-none focus:border-[#c9a96e]/60 text-sm font-golos transition-colors"
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-3.5 rounded-sm font-golos text-sm tracking-widest uppercase transition-all duration-300 disabled:opacity-60"
+                style={{ background: "linear-gradient(135deg, #c9a96e, #e8d5b0)", color: "#0e0a06" }}
+              >
+                {loading ? "Отправка..." : "Закрепить выгоду"}
+              </button>
+            </form>
+
+            <p className="mt-3 text-center text-[#e8d5b0]/30 text-xs font-golos">
+              Нажимая кнопку, вы соглашаетесь на обработку персональных данных
+            </p>
+          </div>
+        ) : (
+          <div className="p-8 text-center">
+            <div className="w-16 h-16 rounded-full bg-[#c9a96e]/10 border border-[#c9a96e]/30 flex items-center justify-center mx-auto mb-4">
+              <Icon name="CheckCircle" size={32} className="text-[#c9a96e]" />
+            </div>
+            <h3 className="font-cormorant text-2xl text-[#e8d5b0] mb-2">Заявка принята!</h3>
+            <p className="text-[#e8d5b0]/60 text-sm font-golos mb-6">
+              Менеджер свяжется с вами в ближайшее время и расскажет об условиях рассрочки 0-0-24.
+            </p>
+            <button
+              onClick={handleClose}
+              className="px-8 py-2.5 border border-[#c9a96e]/30 rounded-sm text-[#c9a96e] text-sm font-golos tracking-wider hover:bg-[#c9a96e]/10 transition-colors"
+            >
+              Закрыть
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default InstallmentPopup;
