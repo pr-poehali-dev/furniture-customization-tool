@@ -10,7 +10,7 @@ const localBusinessSchema = {
   "description": "Мебельная мастерская. Корпусная мебель, кухни, шкафы, лестницы из массива и столы из слэба. Ручная работа.",
   "url": "https://eliut.ru",
   "telephone": "+79959080228",
-  "email": "info@artes-mebel.ru",
+  "email": "mebeleluit@yandex.ru",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "ул. Лесная поляна, 3з",

@@ -64,7 +64,7 @@ export default function Footer() {
             <ul className="space-y-4">
               {[
                 { icon: "Phone", text: "+7 (995) 908-02-28" },
-                { icon: "Mail", text: "info@artes-mebel.ru" },
+                { icon: "Mail", text: "mebeleluit@yandex.ru" },
                 { icon: "MapPin", text: "ул. Лесная поляна, 3з, Барнаул" },
                 { icon: "Clock", text: "Пн–Сб: 09:00–19:00" },
               ].map(({ icon, text }) => (

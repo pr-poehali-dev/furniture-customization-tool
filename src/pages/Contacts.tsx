@@ -42,7 +42,7 @@ export default function Contacts() {
               <div className="space-y-8 mb-12">
                 {[
                   { icon: "Phone", title: "Телефон", lines: ["+7 (995) 908-02-28"] },
-                  { icon: "Mail", title: "Email", lines: ["info@artes-mebel.ru", "design@artes-mebel.ru"] },
+                  { icon: "Mail", title: "Email", lines: ["mebeleluit@yandex.ru"] },
                   { icon: "MapPin", title: "Адрес", lines: ["ул. Лесная поляна, 3з", "Барнаул, Алтайский край"] },
                   { icon: "Factory", title: "Производство", lines: ["ул. Лесная поляна, 3з", "Барнаул"] },
                 ].map(({ icon, title, lines }) => (
