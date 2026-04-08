@@ -72,26 +72,47 @@ export default function Navbar() {
         </button>
       </div>
 
+      {/* Overlay */}
       {menuOpen && (
-        <div className="lg:hidden bg-[#0e0a06]/98 border-t border-[#c9a96e]/20 px-6 py-6">
-          <nav className="flex flex-col gap-5">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`nav-link text-sm ${
-                  location.pathname === item.path ? "!text-[#c9a96e]" : ""
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <Link to="/calculator" className="btn-gold text-center mt-2">
-              Рассчитать стоимость
-            </Link>
-          </nav>
-        </div>
+        <div
+          className="lg:hidden fixed inset-0 bg-black/60 z-40"
+          onClick={() => setMenuOpen(false)}
+        />
       )}
+
+      {/* Drawer */}
+      <div
+        className={`lg:hidden fixed top-0 right-0 h-full w-72 bg-[#0e0a06] border-l border-[#c9a96e]/20 z-50 flex flex-col transition-transform duration-300 ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex items-center justify-between px-6 py-5 border-b border-[#c9a96e]/15">
+          <span className="font-cormorant text-xl text-[#e8d5b0] tracking-widest">ЭЛИУТ</span>
+          <button onClick={() => setMenuOpen(false)} className="text-[#e8d5b0]/60 hover:text-[#c9a96e] transition-colors">
+            <Icon name="X" size={20} />
+          </button>
+        </div>
+        <nav className="flex flex-col gap-1 px-4 py-6 flex-1">
+          {navItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`font-golos text-sm tracking-widest uppercase px-3 py-3 transition-colors duration-200 border-b border-[#c9a96e]/10 ${
+                location.pathname === item.path
+                  ? "text-[#c9a96e]"
+                  : "text-[#e8d5b0]/65 hover:text-[#c9a96e]"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="px-4 pb-8">
+          <Link to="/calculator" className="btn-gold text-center block" onClick={() => setMenuOpen(false)}>
+            Рассчитать стоимость
+          </Link>
+        </div>
+      </div>
     </header>
   );
 }
