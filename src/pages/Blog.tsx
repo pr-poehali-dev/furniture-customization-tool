@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
 import SEOHead from "@/components/SEOHead";
@@ -76,6 +76,7 @@ const posts = [
 
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState("Все");
+  const navigate = useNavigate();
 
   const filtered = activeCategory === "Все"
     ? posts
@@ -129,7 +130,7 @@ export default function Blog() {
       <section className="py-16 bg-[#0e0a06]">
         <div className="container mx-auto px-6">
           {featured && (
-            <div className="card-dark group overflow-hidden mb-8">
+            <div className="card-dark group overflow-hidden mb-8 cursor-pointer" onClick={() => navigate(`/blog/${featured.id}`)}>
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="relative overflow-hidden" style={{ minHeight: "360px" }}>
                   <img
@@ -157,10 +158,10 @@ export default function Blog() {
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="font-golos text-xs text-[#c9a96e]/70">{featured.author}</span>
-                    <button className="flex items-center gap-2 text-[#c9a96e] hover:text-[#e8d5b0] transition-colors">
+                    <span className="flex items-center gap-2 text-[#c9a96e] hover:text-[#e8d5b0] transition-colors">
                       <span className="font-golos text-xs tracking-widest uppercase">Читать</span>
                       <Icon name="ArrowRight" size={14} />
-                    </button>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -169,7 +170,7 @@ export default function Blog() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {rest.map((post) => (
-              <article key={post.id} className="card-dark group overflow-hidden cursor-pointer">
+              <article key={post.id} className="card-dark group overflow-hidden cursor-pointer" onClick={() => navigate(`/blog/${post.id}`)}>
                 <div className="relative overflow-hidden" style={{ height: "200px" }}>
                   <img
                     src={post.img}
