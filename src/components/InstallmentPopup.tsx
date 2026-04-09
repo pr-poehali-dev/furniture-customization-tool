@@ -3,6 +3,7 @@ import Icon from "@/components/ui/icon";
 
 const InstallmentPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [sent, setSent] = useState(false);
@@ -27,6 +28,15 @@ const InstallmentPopup = () => {
 
   const handleClose = () => {
     setIsOpen(false);
+    setIsMinimized(false);
+  };
+
+  const handleMinimize = () => {
+    setIsMinimized(true);
+  };
+
+  const handleExpand = () => {
+    setIsMinimized(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -49,11 +59,39 @@ const InstallmentPopup = () => {
 
   if (!isOpen) return null;
 
+  if (isMinimized) {
+    return (
+      <button
+        onClick={handleExpand}
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#c9a96e] flex items-center justify-center shadow-2xl cursor-pointer group"
+        style={{ animation: "pulse-glow 2s ease-in-out infinite" }}
+      >
+        <style>{`
+          @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(201,169,110,0.7), 0 4px 20px rgba(0,0,0,0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(201,169,110,0), 0 4px 20px rgba(0,0,0,0.4); }
+          }
+          @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(-10deg); }
+            75% { transform: scale(0.9) rotate(10deg); }
+          }
+        `}</style>
+        <Icon
+          name="Percent"
+          size={22}
+          className="text-[#0e0a06]"
+          style={{ animation: "sparkle 2s ease-in-out infinite" }}
+        />
+      </button>
+    );
+  }
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div
         className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-        onClick={handleClose}
+        onClick={handleMinimize}
       />
       <div className="relative z-10 w-full max-w-md rounded-sm bg-[#110d08] border border-[#c9a96e]/30 shadow-2xl overflow-hidden">
         <div
@@ -61,12 +99,22 @@ const InstallmentPopup = () => {
           style={{ background: "linear-gradient(90deg, #c9a96e, #e8d5b0, #c9a96e)" }}
         />
 
-        <button
-          onClick={handleClose}
-          className="absolute top-4 right-4 text-[#c9a96e]/60 hover:text-[#c9a96e] transition-colors"
-        >
-          <Icon name="X" size={20} />
-        </button>
+        <div className="absolute top-4 right-4 flex items-center gap-2">
+          <button
+            onClick={handleMinimize}
+            className="text-[#c9a96e]/60 hover:text-[#c9a96e] transition-colors"
+            title="Свернуть"
+          >
+            <Icon name="Minus" size={18} />
+          </button>
+          <button
+            onClick={handleClose}
+            className="text-[#c9a96e]/60 hover:text-[#c9a96e] transition-colors"
+            title="Закрыть"
+          >
+            <Icon name="X" size={20} />
+          </button>
+        </div>
 
         {!sent ? (
           <div className="p-8">
