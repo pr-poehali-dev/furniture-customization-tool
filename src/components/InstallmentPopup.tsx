@@ -99,20 +99,13 @@ const InstallmentPopup = () => {
           style={{ background: "linear-gradient(90deg, #c9a96e, #e8d5b0, #c9a96e)" }}
         />
 
-        <div className="absolute top-4 right-4 flex items-center gap-2">
+        <div className="absolute top-4 right-4">
           <button
             onClick={handleMinimize}
             className="text-[#c9a96e]/60 hover:text-[#c9a96e] transition-colors"
             title="Свернуть"
           >
             <Icon name="Minus" size={18} />
-          </button>
-          <button
-            onClick={handleClose}
-            className="text-[#c9a96e]/60 hover:text-[#c9a96e] transition-colors"
-            title="Закрыть"
-          >
-            <Icon name="X" size={20} />
           </button>
         </div>
 
