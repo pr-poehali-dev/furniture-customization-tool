@@ -1,4 +1,5 @@
 import Icon from "@/components/ui/icon";
+import { formatPhone } from "@/utils/phoneFormat";
 import {
   CategoryId,
   CategoryParams,
@@ -222,51 +223,58 @@ export default function CalculatorSteps({
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">
+                <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-1">
                   Имя *
                 </label>
                 <input
                   type="text"
                   required
                   placeholder="Иван Иванов"
+                  autoComplete="name"
                   className="input-dark"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                 />
+                <p className="font-golos text-[10px] text-[#e8d5b0]/30 mt-1">Как к вам обращаться</p>
               </div>
               <div>
-                <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">
+                <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-1">
                   Телефон *
                 </label>
                 <input
                   type="tel"
                   required
                   placeholder="+7 (___) ___-__-__"
+                  autoComplete="tel"
                   className="input-dark"
                   value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  onChange={(e) => setForm({ ...form, phone: formatPhone(e.target.value) })}
+                  maxLength={18}
                 />
+                <p className="font-golos text-[10px] text-[#e8d5b0]/30 mt-1">Перезвоним в течение 30 минут</p>
               </div>
             </div>
             <div>
-              <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">
+              <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-1">
                 Email
               </label>
               <input
                 type="email"
                 placeholder="your@email.ru"
+                autoComplete="email"
                 className="input-dark"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
               />
+              <p className="font-golos text-[10px] text-[#e8d5b0]/30 mt-1">Необязательно</p>
             </div>
             <div>
-              <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">
+              <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-1">
                 Пожелания
               </label>
               <textarea
                 rows={3}
-                placeholder="Опишите ваш проект, дополнительные пожелания..."
+                placeholder="Цвет, материал, особые требования к конструкции..."
                 className="input-dark resize-none"
                 value={form.comment}
                 onChange={(e) => setForm({ ...form, comment: e.target.value })}

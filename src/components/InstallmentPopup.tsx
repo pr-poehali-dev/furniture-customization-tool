@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
+import { formatPhone } from "@/utils/phoneFormat";
 
 const InstallmentPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -135,22 +136,31 @@ const InstallmentPopup = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-3">
-              <input
-                type="text"
-                placeholder="Ваше имя"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className="w-full bg-[#1a1209] border border-[#c9a96e]/20 rounded-sm px-4 py-3 text-[#e8d5b0] placeholder-[#e8d5b0]/30 focus:outline-none focus:border-[#c9a96e]/60 text-sm font-golos transition-colors"
-              />
-              <input
-                type="tel"
-                placeholder="+7 (___) ___-__-__"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                required
-                className="w-full bg-[#1a1209] border border-[#c9a96e]/20 rounded-sm px-4 py-3 text-[#e8d5b0] placeholder-[#e8d5b0]/30 focus:outline-none focus:border-[#c9a96e]/60 text-sm font-golos transition-colors"
-              />
+              <div>
+                <input
+                  type="text"
+                  placeholder="Ваше имя"
+                  autoComplete="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  className="w-full bg-[#1a1209] border border-[#c9a96e]/20 rounded-sm px-4 py-3 text-[#e8d5b0] placeholder-[#e8d5b0]/30 focus:outline-none focus:border-[#c9a96e]/60 text-sm font-golos transition-colors"
+                />
+                <p className="font-golos text-[10px] text-[#e8d5b0]/30 mt-1 px-1">Как к вам обращаться</p>
+              </div>
+              <div>
+                <input
+                  type="tel"
+                  placeholder="+7 (___) ___-__-__"
+                  autoComplete="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(formatPhone(e.target.value))}
+                  maxLength={18}
+                  required
+                  className="w-full bg-[#1a1209] border border-[#c9a96e]/20 rounded-sm px-4 py-3 text-[#e8d5b0] placeholder-[#e8d5b0]/30 focus:outline-none focus:border-[#c9a96e]/60 text-sm font-golos transition-colors"
+                />
+                <p className="font-golos text-[10px] text-[#e8d5b0]/30 mt-1 px-1">Перезвоним и подберём условия</p>
+              </div>
               <button
                 type="submit"
                 disabled={loading}

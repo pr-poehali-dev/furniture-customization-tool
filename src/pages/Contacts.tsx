@@ -2,6 +2,7 @@ import { useState } from "react";
 import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
 import SEOHead from "@/components/SEOHead";
+import { formatPhone } from "@/utils/phoneFormat";
 
 export default function Contacts() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
@@ -101,51 +102,58 @@ export default function Contacts() {
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">
+                        <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-1">
                           Имя *
                         </label>
                         <input
                           type="text"
                           required
                           placeholder="Иван Иванов"
+                          autoComplete="name"
                           className="input-dark"
                           value={form.name}
                           onChange={(e) => setForm({ ...form, name: e.target.value })}
                         />
+                        <p className="font-golos text-[10px] text-[#e8d5b0]/30 mt-1">Как к вам обращаться</p>
                       </div>
                       <div>
-                        <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">
+                        <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-1">
                           Телефон *
                         </label>
                         <input
                           type="tel"
                           required
                           placeholder="+7 (___) ___-__-__"
+                          autoComplete="tel"
                           className="input-dark"
                           value={form.phone}
-                          onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                          onChange={(e) => setForm({ ...form, phone: formatPhone(e.target.value) })}
+                          maxLength={18}
                         />
+                        <p className="font-golos text-[10px] text-[#e8d5b0]/30 mt-1">Перезвоним в течение 30 минут</p>
                       </div>
                     </div>
                     <div>
-                      <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">
+                      <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-1">
                         Email
                       </label>
                       <input
                         type="email"
                         placeholder="your@email.ru"
+                        autoComplete="email"
                         className="input-dark"
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                       />
+                      <p className="font-golos text-[10px] text-[#e8d5b0]/30 mt-1">Необязательно</p>
                     </div>
                     <div>
-                      <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-2">
+                      <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-1">
                         Сообщение
                       </label>
                       <textarea
                         rows={4}
-                        placeholder="Опишите ваш проект..."
+                        placeholder="Опишите ваш проект, пожелания по материалу, размерам..."
                         className="input-dark resize-none"
                         value={form.message}
                         onChange={(e) => setForm({ ...form, message: e.target.value })}
