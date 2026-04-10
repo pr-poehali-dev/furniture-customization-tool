@@ -1,4 +1,5 @@
 {
+  "send-contact": "https://functions.poehali.dev/ddfb3a9d-3359-4018-a869-99d096d7e432",
   "send-installment": "https://functions.poehali.dev/fdf20583-ac14-44a6-9474-c32a21b816a5",
   "send-order": "https://functions.poehali.dev/20c2bd6f-1922-482b-b140-158e144872a3"
 }

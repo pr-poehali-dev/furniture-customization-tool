@@ -3,13 +3,26 @@ import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
 import SEOHead from "@/components/SEOHead";
 import { formatPhone } from "@/utils/phoneFormat";
+import func2url from "../../backend/func2url.json";
 
 export default function Contacts() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    try {
+      await fetch(func2url["send-contact"], {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+    } catch (err) {
+      console.error(err);
+    }
+    setLoading(false);
     setSent(true);
   };
 
@@ -159,8 +172,8 @@ export default function Contacts() {
                         onChange={(e) => setForm({ ...form, message: e.target.value })}
                       />
                     </div>
-                    <button type="submit" className="btn-gold w-full text-center">
-                      Отправить сообщение
+                    <button type="submit" disabled={loading} className={`btn-gold w-full text-center ${loading ? "opacity-60 cursor-not-allowed" : ""}`}>
+                      {loading ? "Отправка..." : "Отправить сообщение"}
                     </button>
                     <p className="font-golos text-[10px] text-[#e8d5b0]/30 text-center">
                       Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
