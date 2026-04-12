@@ -1,5 +1,5 @@
 import Icon from "@/components/ui/icon";
-import { formatPhone } from "@/utils/phoneFormat";
+import { formatPhone, isPhoneComplete } from "@/utils/phoneFormat";
 import {
   CategoryId,
   CategoryParams,
@@ -284,7 +284,7 @@ export default function CalculatorSteps({
               <button type="button" onClick={() => setStep(3)} className="btn-outline-gold">
                 Назад
               </button>
-              <button type="submit" disabled={sending || !form.name.trim() || !form.phone.trim()} className={`btn-gold ${sending || !form.name.trim() || !form.phone.trim() ? "opacity-40 cursor-not-allowed" : ""}`}>
+              <button type="submit" disabled={sending || !form.name.trim() || !isPhoneComplete(form.phone)} className={`btn-gold ${sending || !form.name.trim() || !isPhoneComplete(form.phone) ? "opacity-40 cursor-not-allowed" : ""}`}>
                 {sending ? "Отправка..." : "Отправить заявку"}
               </button>
             </div>

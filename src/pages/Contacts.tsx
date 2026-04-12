@@ -2,7 +2,7 @@ import { useState } from "react";
 import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
 import SEOHead from "@/components/SEOHead";
-import { formatPhone } from "@/utils/phoneFormat";
+import { formatPhone, isPhoneComplete } from "@/utils/phoneFormat";
 import func2url from "../../backend/func2url.json";
 
 export default function Contacts() {
@@ -172,7 +172,7 @@ export default function Contacts() {
                         onChange={(e) => setForm({ ...form, message: e.target.value })}
                       />
                     </div>
-                    <button type="submit" disabled={loading || !form.name.trim() || !form.phone.trim()} className={`btn-gold w-full text-center ${loading || !form.name.trim() || !form.phone.trim() ? "opacity-40 cursor-not-allowed" : ""}`}>
+                    <button type="submit" disabled={loading || !form.name.trim() || !isPhoneComplete(form.phone)} className={`btn-gold w-full text-center ${loading || !form.name.trim() || !isPhoneComplete(form.phone) ? "opacity-40 cursor-not-allowed" : ""}`}>
                       {loading ? "Отправка..." : "Отправить сообщение"}
                     </button>
                     <p className="font-golos text-[10px] text-[#e8d5b0]/30 text-center">

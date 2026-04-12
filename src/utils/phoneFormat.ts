@@ -1,3 +1,7 @@
+export function isPhoneComplete(value: string): boolean {
+  return value.replace(/\D/g, "").length === 11;
+}
+
 export function formatPhone(value: string): string {
   const digits = value.replace(/\D/g, "");
 
