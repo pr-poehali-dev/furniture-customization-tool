@@ -163,8 +163,8 @@ const InstallmentPopup = () => {
               </div>
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full py-3.5 rounded-sm font-golos text-sm tracking-widest uppercase transition-all duration-300 disabled:opacity-60"
+                disabled={loading || !name.trim() || !phone.trim()}
+                className="w-full py-3.5 rounded-sm font-golos text-sm tracking-widest uppercase transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
                 style={{ background: "linear-gradient(135deg, #c9a96e, #e8d5b0)", color: "#0e0a06" }}
               >
                 {loading ? "Отправка..." : "Закрепить выгоду"}
