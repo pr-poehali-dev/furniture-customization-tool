@@ -47,26 +47,33 @@ const InstallmentPopup = () => {
     return (
       <button
         onClick={handleExpand}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#c9a96e] flex items-center justify-center shadow-2xl cursor-pointer group"
-        style={{ animation: "pulse-glow 2s ease-in-out infinite" }}
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-full cursor-pointer"
+        style={{
+          background: "linear-gradient(135deg, #c9a96e, #e8d5b0)",
+          boxShadow: "0 8px 32px rgba(201,169,110,0.45)",
+          animation: "pill-glow 2.5s ease-in-out infinite",
+        }}
       >
         <style>{`
-          @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(201,169,110,0.7), 0 4px 20px rgba(0,0,0,0.4); }
-            50% { box-shadow: 0 0 0 10px rgba(201,169,110,0), 0 4px 20px rgba(0,0,0,0.4); }
+          @keyframes pill-glow {
+            0%, 100% { box-shadow: 0 8px 32px rgba(201,169,110,0.45), 0 0 0 0 rgba(201,169,110,0.5); }
+            50% { box-shadow: 0 8px 40px rgba(201,169,110,0.7), 0 0 0 8px rgba(201,169,110,0); }
           }
-          @keyframes sparkle {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.2) rotate(-10deg); }
-            75% { transform: scale(0.9) rotate(10deg); }
+          @keyframes icon-bounce {
+            0%, 100% { transform: rotate(-10deg) scale(1); }
+            50% { transform: rotate(10deg) scale(1.15); }
           }
         `}</style>
         <Icon
           name="Percent"
-          size={22}
-          className="text-[#0e0a06]"
-          style={{ animation: "sparkle 2s ease-in-out infinite" }}
+          size={18}
+          className="text-[#0e0a06] shrink-0"
+          style={{ animation: "icon-bounce 2.5s ease-in-out infinite" }}
         />
+        <div className="text-left leading-tight">
+          <div className="text-[#0e0a06] font-golos text-xs font-bold tracking-wider uppercase whitespace-nowrap">Рассрочка 0–0–24</div>
+          <div className="text-[#0e0a06]/70 font-golos text-[10px] whitespace-nowrap">Без переплат — узнать условия</div>
+        </div>
       </button>
     );
   }
