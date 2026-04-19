@@ -1,31 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import { formatPhone, isPhoneComplete } from "@/utils/phoneFormat";
 
 const InstallmentPopup = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
+  const [isMinimized, setIsMinimized] = useState(true);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const submitted = localStorage.getItem("installment_submitted");
-    if (submitted) return;
-
-    const firstTimer = setTimeout(() => setIsOpen(true), 4000);
-
-    const interval = setInterval(() => {
-      const alreadySubmitted = localStorage.getItem("installment_submitted");
-      if (!alreadySubmitted) setIsOpen(true);
-    }, 2 * 60 * 1000);
-
-    return () => {
-      clearTimeout(firstTimer);
-      clearInterval(interval);
-    };
-  }, []);
 
   const handleClose = () => {
     setIsOpen(false);
