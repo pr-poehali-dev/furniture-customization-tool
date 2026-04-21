@@ -31,6 +31,10 @@ type StepsProps = {
   toggleExtra: (id: string) => void;
   form: { name: string; phone: string; email: string; comment: string };
   setForm: (f: { name: string; phone: string; email: string; comment: string }) => void;
+  honeypot: string;
+  setHoneypot: (v: string) => void;
+  formError: string;
+  setFormError: (v: string) => void;
   handleSubmit: (e: React.FormEvent) => void;
   setStep: (s: number) => void;
   catObj: { label: string } | undefined;
@@ -50,6 +54,10 @@ export default function CalculatorSteps({
   toggleExtra,
   form,
   setForm,
+  honeypot,
+  setHoneypot,
+  formError,
+  setFormError,
   handleSubmit,
   setStep,
   catObj,
@@ -221,6 +229,7 @@ export default function CalculatorSteps({
             Ваши контакты
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
+            <input type="text" name="website" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-1">
@@ -233,7 +242,7 @@ export default function CalculatorSteps({
                   autoComplete="name"
                   className="input-dark"
                   value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  onChange={(e) => { setForm({ ...form, name: e.target.value }); setFormError(""); }}
                 />
                 <p className="font-golos text-[10px] text-[#e8d5b0]/30 mt-1">Как к вам обращаться</p>
               </div>
@@ -248,7 +257,7 @@ export default function CalculatorSteps({
                   autoComplete="tel"
                   className="input-dark"
                   value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: formatPhone(e.target.value) })}
+                  onChange={(e) => { setForm({ ...form, phone: formatPhone(e.target.value) }); setFormError(""); }}
                   maxLength={18}
                 />
                 <p className="font-golos text-[10px] text-[#e8d5b0]/30 mt-1">Перезвоним в течение 30 минут</p>
@@ -280,6 +289,7 @@ export default function CalculatorSteps({
                 onChange={(e) => setForm({ ...form, comment: e.target.value })}
               />
             </div>
+            {formError && <p className="font-golos text-xs text-red-400">{formError}</p>}
             <div className="flex justify-between mt-2">
               <button type="button" onClick={() => setStep(3)} className="btn-outline-gold">
                 Назад

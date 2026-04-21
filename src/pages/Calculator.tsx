@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
 import SEOHead from "@/components/SEOHead";
+import { isPhoneValid, isNameValid, canSubmit, checkHoneypot, startFormTimer, isHumanSpeed } from "@/utils/formGuard";
 import func2url from "../../backend/func2url.json";
 import {
   CategoryId,
@@ -30,8 +31,13 @@ export default function Calculator() {
   const [categoryParams, setCategoryParams] = useState<Record<CategoryId, CategoryParams>>({ ...defaultParams });
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
   const [form, setForm] = useState({ name: "", phone: "", email: "", comment: "" });
+  const [honeypot, setHoneypot] = useState("");
+  const [formError, setFormError] = useState("");
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
+  const formId = "calculator";
+
+  useEffect(() => { startFormTimer(formId); }, []);
 
   const catObj = categories.find((c) => c.id === selectedCategory);
   const categoryPrice = selectedCategory
@@ -56,6 +62,20 @@ export default function Calculator() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setFormError("");
+
+    if (!checkHoneypot(honeypot)) return;
+    if (!isHumanSpeed(formId)) { setFormError("Заполните форму чуть медленнее"); return; }
+
+    const nameCheck = isNameValid(form.name);
+    if (!nameCheck.ok) { setFormError(nameCheck.error!); return; }
+
+    const phoneCheck = isPhoneValid(form.phone);
+    if (!phoneCheck.ok) { setFormError(phoneCheck.error!); return; }
+
+    const rateCheck = canSubmit();
+    if (!rateCheck.ok) { setFormError(rateCheck.error!); return; }
+
     setSending(true);
 
     const paramsSummary = selectedCategory
@@ -167,6 +187,10 @@ export default function Calculator() {
                   toggleExtra={toggleExtra}
                   form={form}
                   setForm={setForm}
+                  honeypot={honeypot}
+                  setHoneypot={setHoneypot}
+                  formError={formError}
+                  setFormError={setFormError}
                   handleSubmit={handleSubmit}
                   setStep={setStep}
                   catObj={catObj}

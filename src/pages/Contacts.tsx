@@ -1,17 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import Icon from "@/components/ui/icon";
 import SEOHead from "@/components/SEOHead";
 import { formatPhone, isPhoneComplete } from "@/utils/phoneFormat";
+import { isPhoneValid, isNameValid, canSubmit, checkHoneypot, startFormTimer, isHumanSpeed } from "@/utils/formGuard";
 import func2url from "../../backend/func2url.json";
 
 export default function Contacts() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
+  const [honeypot, setHoneypot] = useState("");
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const formId = "contacts";
+
+  useEffect(() => { startFormTimer(formId); }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+
+    if (!checkHoneypot(honeypot)) return;
+    if (!isHumanSpeed(formId)) { setError("Заполните форму чуть медленнее"); return; }
+
+    const nameCheck = isNameValid(form.name);
+    if (!nameCheck.ok) { setError(nameCheck.error!); return; }
+
+    const phoneCheck = isPhoneValid(form.phone);
+    if (!phoneCheck.ok) { setError(phoneCheck.error!); return; }
+
+    const rateCheck = canSubmit();
+    if (!rateCheck.ok) { setError(rateCheck.error!); return; }
+
     setLoading(true);
     try {
       await fetch(func2url["send-contact"], {
@@ -113,6 +133,7 @@ export default function Contacts() {
                 <>
                   <h2 className="font-cormorant text-2xl text-[#e8d5b0] mb-8">Напишите нам</h2>
                   <form onSubmit={handleSubmit} className="space-y-4">
+                    <input type="text" name="website" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="font-golos text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]/60 block mb-1">
@@ -172,6 +193,7 @@ export default function Contacts() {
                         onChange={(e) => setForm({ ...form, message: e.target.value })}
                       />
                     </div>
+                    {error && <p className="font-golos text-xs text-red-400">{error}</p>}
                     <button type="submit" disabled={loading || !form.name.trim() || !isPhoneComplete(form.phone)} className={`btn-gold w-full text-center ${loading || !form.name.trim() || !isPhoneComplete(form.phone) ? "opacity-40 cursor-not-allowed" : ""}`}>
                       {loading ? "Отправка..." : "Отправить сообщение"}
                     </button>

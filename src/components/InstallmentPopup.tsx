@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
 import { formatPhone, isPhoneComplete } from "@/utils/phoneFormat";
+import { isPhoneValid, isNameValid, canSubmit, checkHoneypot, startFormTimer, isHumanSpeed } from "@/utils/formGuard";
 
 const InstallmentPopup = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [isMinimized, setIsMinimized] = useState(true);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const formId = "installment-popup";
+
+  useEffect(() => {
+    if (!isMinimized) startFormTimer(formId);
+  }, [isMinimized]);
 
   const handleClose = () => {
     setIsOpen(false);
@@ -25,7 +33,20 @@ const InstallmentPopup = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !phone.trim()) return;
+    setError("");
+
+    if (!checkHoneypot(honeypot)) return;
+    if (!isHumanSpeed(formId)) { setError("Заполните форму чуть медленнее"); return; }
+
+    const nameCheck = isNameValid(name);
+    if (!nameCheck.ok) { setError(nameCheck.error!); return; }
+
+    const phoneCheck = isPhoneValid(phone);
+    if (!phoneCheck.ok) { setError(phoneCheck.error!); return; }
+
+    const rateCheck = canSubmit();
+    if (!rateCheck.ok) { setError(rateCheck.error!); return; }
+
     setLoading(true);
     try {
       await fetch("https://functions.poehali.dev/fdf20583-ac14-44a6-9474-c32a21b816a5", {
@@ -126,13 +147,14 @@ const InstallmentPopup = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-3">
+              <input type="text" name="website" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
               <div>
                 <input
                   type="text"
                   placeholder="Ваше имя"
                   autoComplete="name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => { setName(e.target.value); setError(""); }}
                   required
                   className="w-full bg-[#1a1209] border border-[#c9a96e]/20 rounded-sm px-4 py-3 text-[#e8d5b0] placeholder-[#e8d5b0]/30 focus:outline-none focus:border-[#c9a96e]/60 text-sm font-golos transition-colors"
                 />
@@ -144,13 +166,14 @@ const InstallmentPopup = () => {
                   placeholder="+7 (___) ___-__-__"
                   autoComplete="tel"
                   value={phone}
-                  onChange={(e) => setPhone(formatPhone(e.target.value))}
+                  onChange={(e) => { setPhone(formatPhone(e.target.value)); setError(""); }}
                   maxLength={18}
                   required
                   className="w-full bg-[#1a1209] border border-[#c9a96e]/20 rounded-sm px-4 py-3 text-[#e8d5b0] placeholder-[#e8d5b0]/30 focus:outline-none focus:border-[#c9a96e]/60 text-sm font-golos transition-colors"
                 />
                 <p className="font-golos text-[10px] text-[#e8d5b0]/30 mt-1 px-1">Перезвоним и подберём условия</p>
               </div>
+              {error && <p className="font-golos text-xs text-red-400 px-1">{error}</p>}
               <button
                 type="submit"
                 disabled={loading || !name.trim() || !isPhoneComplete(phone)}
