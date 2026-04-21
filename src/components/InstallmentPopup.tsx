@@ -176,7 +176,7 @@ const InstallmentPopup = () => {
               {error && <p className="font-golos text-xs text-red-400 px-1">{error}</p>}
               <button
                 type="submit"
-                disabled={loading || !name.trim() || !isPhoneComplete(phone)}
+                disabled={loading || !name.trim() || phone.length < 4}
                 className="w-full py-3.5 rounded-sm font-golos text-sm tracking-widest uppercase transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
                 style={{ background: "linear-gradient(135deg, #c9a96e, #e8d5b0)", color: "#0e0a06" }}
               >

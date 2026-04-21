@@ -194,7 +194,7 @@ export default function Contacts() {
                       />
                     </div>
                     {error && <p className="font-golos text-xs text-red-400">{error}</p>}
-                    <button type="submit" disabled={loading || !form.name.trim() || !isPhoneComplete(form.phone)} className={`btn-gold w-full text-center ${loading || !form.name.trim() || !isPhoneComplete(form.phone) ? "opacity-40 cursor-not-allowed" : ""}`}>
+                    <button type="submit" disabled={loading || !form.name.trim() || form.phone.length < 4} className={`btn-gold w-full text-center ${loading || !form.name.trim() || form.phone.length < 4 ? "opacity-40 cursor-not-allowed" : ""}`}>
                       {loading ? "Отправка..." : "Отправить сообщение"}
                     </button>
                     <p className="font-golos text-[10px] text-[#e8d5b0]/30 text-center">

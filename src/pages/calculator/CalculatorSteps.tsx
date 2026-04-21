@@ -294,7 +294,7 @@ export default function CalculatorSteps({
               <button type="button" onClick={() => setStep(3)} className="btn-outline-gold">
                 Назад
               </button>
-              <button type="submit" disabled={sending || !form.name.trim() || !isPhoneComplete(form.phone)} className={`btn-gold ${sending || !form.name.trim() || !isPhoneComplete(form.phone) ? "opacity-40 cursor-not-allowed" : ""}`}>
+              <button type="submit" disabled={sending || !form.name.trim() || form.phone.length < 4} className={`btn-gold ${sending || !form.name.trim() || form.phone.length < 4 ? "opacity-40 cursor-not-allowed" : ""}`}>
                 {sending ? "Отправка..." : "Отправить заявку"}
               </button>
             </div>
